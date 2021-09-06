@@ -1,0 +1,174 @@
+.colorBarContainer {
+  .colorBar {
+    position: relative;
+    display: inherit;
+    width: 100%;
+    height: 100%;
+
+    .popover {
+      position: absolute;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      .cover {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+      .colorPicker {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .color {
+      position: relative;
+      width: 100%;
+      .btns {
+        position: absolute;
+        bottom: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+
+        button {
+          display: inherit;
+          align-items: center;
+          justify-content: center;
+          margin: 0 3%;
+          color: #fff;
+          background-color: #ffffff5c;
+          border: none;
+          opacity: 0.65;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      .colorName {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        color: white;
+        font-weight: 300;
+        transform: translate3d(-50%, 0, 0) scale(1);
+      }
+
+      .gradientBar {
+        display: none;
+        width: 100%;
+        height: 100%;
+        .gradientBlock {
+          flex-grow: 1;
+          width: 0;
+          color: white;
+          font-weight: 300;
+          text-align: center;
+          span {
+            display: none;
+          }
+        }
+
+        &.gradientBarVertical {
+          flex-direction: column;
+          .gradientBlock {
+            width: auto;
+            height: 0;
+            padding-top: 2.5%;
+            span {
+              display: inline;
+            }
+          }
+        }
+      }
+
+      &.colorGrayscale:hover {
+        .colorName {
+          display: none;
+        }
+        .gradientBar {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  &:last-child {
+    .colorBar {
+      .colorPicker {
+        right: 0;
+        left: auto;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+
+  &:first-child {
+    .colorBar {
+      .colorPicker {
+        left: 0;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+}
+
+.addColorList {
+  width: 100%;
+  .addColor {
+    position: absolute;
+    top: 0;
+    z-index: 888;
+    width: 32px;
+    height: inherit;
+    height: 100%;
+    border-radius: 0;
+    transform: translateX(-50%);
+    opacity: 0;
+    &:global(.ant-btn):hover {
+      color: var(--main-text-color);
+      background-color: var(--main-bg-color);
+      border-color: var(--main-border-color);
+    }
+  }
+
+  .addColor:hover {
+    opacity: 1;
+  }
+
+  .addColor:first-child {
+    transform: translateX(0%);
+  }
+
+  .addColor:last-child {
+    right: 0;
+    transform: translateX(0%);
+  }
+}
+
+.addColorListSmall {
+  .addColor {
+    top: 50%;
+    height: auto;
+    transform: translateY(-50%);
+  }
+}
+
+.tooltip {
+  max-width: max-content;
+  :global(.ant-tooltip-inner) {
+    padding: 0;
+  }
+  .colorPicker {
+    box-shadow: none !important;
+    input {
+      color: #000;
+    }
+  }
+}

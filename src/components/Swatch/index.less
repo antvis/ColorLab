@@ -1,0 +1,69 @@
+@import '~antd/es/style/themes/default.less';
+.swatch {
+  margin-bottom: 1em;
+
+  .panel {
+    width: 100%;
+    color: var(--third-text-color);
+    border-radius: 4px;
+    cursor: pointer;
+
+    .colors {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 50px;
+      margin: 0;
+      overflow-y: hidden;
+      font-size: 0;
+      div:first-child {
+        border-radius: 4px 0 0 4px;
+      }
+      div:last-child {
+        border-radius: 0 4px 4px 0;
+      }
+      div:only-child {
+        border-radius: 4px 4px 4px 4px;
+      }
+
+      .color {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 100%;
+        overflow: hidden;
+        text-align: right;
+        box-shadow: 0 0 0 0 currentColor;
+        transition: all 0.3s;
+      }
+    }
+    .toolbars {
+      display: none;
+      width: 100%;
+      button {
+        border: 0;
+      }
+    }
+
+    &.panelWithToolbal:hover {
+      box-shadow: 0 0 5px var(--main-shadow-color);
+      .toolbars {
+        display: flex;
+        justify-content: flex-end;
+        margin: -8px;
+        margin-bottom: 0;
+      }
+      .colors {
+        div:first-child {
+          border-radius: 4px 0 0 0;
+        }
+        div:last-child {
+          border-radius: 0 4px 0 0;
+        }
+        div:only-child {
+          border-radius: 4px 4px 0 0;
+        }
+      }
+    }
+  }
+}

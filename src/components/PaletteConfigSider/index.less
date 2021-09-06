@@ -1,0 +1,115 @@
+@import '~antd/es/style/themes/default.less';
+.sider {
+  height: calc(100%);
+  background-color: var(--main-bg-color);
+  border-right: 1px solid var(--main-border-color);
+  .siderCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    font-size: 18px;
+    border: 0;
+  }
+  .siderCloseButton:hover {
+    color: @primary-color;
+    border: 0;
+    box-shadow: 0;
+  }
+
+  .paletteConfig {
+    height: 100%;
+    .paletteConfigTitle {
+      padding: 15px;
+      color: var(--main-text-color);
+      font-size: 16px;
+      .paletteConfigTitleIcon {
+        margin-right: 10px;
+      }
+    }
+
+    .paletteConfigContent {
+      height: calc(100% - 55px);
+      padding: 0 16px 0;
+      border-radius: 0;
+    }
+
+    .paletteTypeInfoPanel {
+      margin-top: 0;
+      margin-bottom: 2em;
+      color: var(--main-text-color);
+      background-color: var(--second-bg-color);
+    }
+
+    .colorInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      .colorInfoLabel {
+        margin-bottom: 8px;
+        color: var(--main-text-color);
+      }
+      .resetLabel {
+        margin-right: 0;
+      }
+    }
+    .colorTendency {
+      display: flex;
+      flex-direction: row;
+      label {
+        flex-grow: 1;
+        width: 0;
+        text-align: center;
+      }
+    }
+    .colorSelect {
+      width: 100%;
+      height: 40px;
+      color: var(--main-text-color);
+      border: 1px solid var(--second-border-color);
+      border-radius: 2px;
+      cursor: pointer;
+      &:hover {
+        border-color: @primary-color;
+      }
+      .colorBox {
+        float: right;
+        width: 32px;
+        height: 80%;
+        margin-right: 8px;
+        border-radius: 5px;
+        transform: translateY(12%);
+      }
+      .colorName {
+        float: left;
+        margin-left: 10px;
+        font-size: medium;
+        transform: translateY(25%);
+      }
+    }
+
+    .popover {
+      position: absolute;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      .cover {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+      .colorPicker {
+        position: absolute;
+        bottom: 50%;
+        left: 135%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .continuousPaletteIcon:hover {
+      color: @primary-color;
+    }
+  }
+}
