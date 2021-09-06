@@ -1,0 +1,114 @@
+@import '~antd/es/style/themes/default.less';
+
+.modal {
+  .sourceContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 220px;
+    .sourceContainerText {
+      margin-bottom: 0.5em;
+    }
+    .sourceContainerInput {
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    .urlInput {
+      height: 45px;
+    }
+  }
+  .localContainer {
+    background-color: var(--second-bg-color);
+    border: 0;
+    .localLogo {
+      color: var(--forth-text-color);
+      font-size: 3em;
+    }
+    .localText {
+      color: var(--forth-text-color);
+    }
+  }
+
+  :global(.ant-tabs-top > .ant-tabs-nav::before) {
+    border: 0;
+  }
+  :global(.ant-modal-content) {
+    border-radius: 5px;
+    :global(.ant-modal-header) {
+      border-radius: 5px 5px 0 0;
+    }
+    :global(.ant-modal-footer) {
+      display: flex;
+      padding: 24px;
+      padding-top: 0;
+      border: 0;
+      button {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .header {
+    .headerButton {
+      padding: 0;
+    }
+  }
+
+  .exportTypeContainer {
+    margin-bottom: 10px;
+    text-align: center;
+    .exportTypeButton {
+      width: 80px;
+      height: 80px;
+      border-radius: 5px;
+      svg {
+        font-size: 2.5em;
+      }
+    }
+    .exportTypeText {
+      margin-top: 5px;
+    }
+  }
+  .exportTypeContainer:hover {
+    color: @primary-color;
+  }
+
+  .contentText {
+    display: inline-block;
+    width: 100%;
+    max-height: 400px;
+    margin-top: 5px;
+    padding: 5px;
+    overflow: scroll;
+    border: 1px solid var(--main-border-color);
+  }
+
+  .contentImage {
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+:global(.ant-modal-header),
+:global(.ant-modal-content) {
+  color: var(--main-text-color);
+  background-color: var(--main-bg-color);
+  border-color: var(--main-border-color);
+  :global(.ant-modal-title) {
+    color: var(--main-text-color);
+  }
+
+  :global(.ant-tabs) {
+    color: var(--main-text-color);
+  }
+
+  :global(.ant-input) {
+    color: var(--main-text-color);
+    background: none;
+    border-color: var(--second-border-color);
+    &:hover {
+      border-color: @primary-color;
+    }
+  }
+}

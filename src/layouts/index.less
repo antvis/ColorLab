@@ -1,0 +1,222 @@
+@import '~antd/es/style/themes/default.less';
+
+.layout {
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--main-bg-color);
+
+  .sider {
+    height: calc(100%);
+    border-right: 1px solid var(--main-border-color);
+    .siderCloseButton {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      font-size: 18px;
+      border: 0;
+      box-shadow: none;
+    }
+    .siderOpenButton {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .header {
+    position: relative;
+    box-sizing: border-box;
+    height: 56px;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--main-border-color);
+    .logo {
+      img {
+        height: 40px;
+      }
+    }
+    .menu {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      :global(.ant-menu) {
+        color: var(--main-text-color);
+        background: none;
+      }
+      :global(.ant-menu-horizontal) {
+        border: 0;
+        :global(.ant-menu-item) {
+          margin-right: 0;
+          margin-left: 0;
+          padding: 0 10px;
+
+          &:global:not(.ant-menu-item-selected) a {
+            color: var(--main-text-color);
+            &:hover {
+              color: @primary-color;
+            }
+          }
+        }
+      }
+    }
+    .toolbar {
+      position: absolute;
+      right: 16px;
+      bottom: 0;
+      padding-top: 10px;
+      .toolbarItem {
+        color: var(--main-text-color);
+      }
+      .toolbarItem:hover {
+        color: @primary-color;
+      }
+      .toolbarButton {
+        border: 0;
+        border-radius: 50%;
+        box-shadow: none;
+        cursor: pointer;
+      }
+    }
+  }
+  .subHeader {
+    height: 45px;
+    padding: 7px 16px;
+    background-color: var(--main-bg-color);
+
+    .dropdownButton {
+      padding-right: 0;
+      padding-left: 0;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .simulationButton {
+      border: 0;
+      box-shadow: none;
+    }
+
+    .divider {
+      border-left-color: var(--main-border-color);
+    }
+
+    .btnGroup {
+      float: right;
+      .redo {
+        margin-right: 20px;
+        margin-left: -1px;
+        padding-bottom: 5px;
+        transform: rotateY(180deg);
+      }
+    }
+
+    .protestMenu {
+      .protestMenuItem {
+        background: none;
+        border: 0;
+        box-shadow: none;
+        &:global(.ant-radio-button-wrapper:not(:first-child)::before) {
+          display: none;
+        }
+      }
+    }
+  }
+  .content {
+    position: relative;
+    height: calc(100vh - 101px);
+    background-color: var(--main-bg-color);
+  }
+}
+
+.dropdownMenu {
+  padding: 3px;
+  .menuItem {
+    .itemName {
+      margin: 0;
+      color: var(--second-text-color);
+    }
+    .itemDescription {
+      display: block;
+      height: 0;
+      overflow: hidden;
+      color: var(--third-text-color);
+    }
+  }
+
+  .menuItem:hover {
+    background-color: var(--hover-bg-color);
+    .itemDescription {
+      height: auto;
+    }
+  }
+}
+
+:global(.ant-btn) {
+  &:global:not(.ant-btn-primary):not(.ant-btn-link):not(:disabled) {
+    color: var(--main-text-color);
+    background-color: transparent;
+    border-color: var(--second-border-color);
+    &:hover {
+      color: @primary-color;
+      border-color: @primary-color;
+    }
+  }
+  &:disabled,
+  &:disabled:hover {
+    color: var(--third-text-color);
+    background-color: var(--third-bg-color);
+    border-color: var(--second-border-color);
+  }
+}
+:global(.ant-select:not(.ant-select-customize-input)) {
+  color: var(--main-text-color);
+  :global(.ant-select-selector) {
+    background: none;
+  }
+  :global(.ant-select-arrow) {
+    color: var(--main-text-color);
+  }
+}
+:global(.ant-radio-button-wrapper) {
+  background: none;
+  &:global:not(.ant-radio-button-wrapper-checked) {
+    color: var(--main-text-color);
+    border-color: var(--second-border-color);
+    &:hover {
+      color: @primary-color;
+      border-color: @primary-color;
+    }
+  }
+}
+
+:global(.ant-dropdown-menu) {
+  background-color: var(--main-bg-color);
+  :global(.ant-dropdown-menu-title-content) {
+    color: var(--main-text-color);
+  }
+}
+
+:global(.ant-select-dropdown) {
+  background-color: var(--main-bg-color);
+  :global(.ant-select-item-option-selected:not(.ant-select-item-option-disabled)) {
+    color: var(--main-text-color);
+    background-color: var(--hover-bg-color);
+  }
+}
+
+:global(.ant-input-number) {
+  color: var(--main-text-color);
+  background: none;
+  border-color: var(--second-border-color);
+  &:hover {
+    border-color: @primary-color;
+  }
+  :global(.ant-input-number-handler-wrap) {
+    background: var(--second-bg-color);
+    :global(.ant-input-number-handler) {
+      color: var(--main-text-color);
+    }
+  }
+}

@@ -1,0 +1,146 @@
+.distanceMatrixContainer {
+  display: flex;
+  align-items: flex-end;
+  width: 90%;
+  height: 80%;
+  .distanceMatrix {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    padding-bottom: 2px;
+    background-color: var(--second-bg-color);
+    .matrixRow {
+      display: flex;
+      flex-grow: 1;
+      width: 100%;
+      height: 20px;
+      .matrixLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          color: var(--third-text-color);
+          font-size: 1.5em;
+        }
+      }
+
+      .matrixCell {
+        position: relative;
+        flex-grow: 1;
+        width: 20px;
+        margin: 1px 1px 0;
+        font-size: 0.7em;
+        text-align: center;
+        cursor: pointer;
+        .matrixCellLeft,
+        .matrixCellRight {
+          display: none;
+          height: 100%;
+        }
+
+        .matrixCellText {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        &.matrixCell:hover,
+        &.matrixCellEditing {
+          .matrixCellLeft,
+          .matrixCellRight {
+            display: inline-block;
+          }
+        }
+
+        .btns {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          button {
+            align-items: center;
+            justify-content: center;
+            margin: 0 3%;
+            color: #fff;
+            background-color: #ffffff5c;
+            border: none;
+            opacity: 0.65;
+            &:hover {
+              opacity: 1;
+            }
+          }
+          .hoverShow {
+            display: none;
+          }
+          &.btns:hover {
+            .hoverShow {
+              display: inherit;
+            }
+          }
+        }
+
+        .popover {
+          position: absolute;
+          z-index: 999;
+          width: 100%;
+          height: 100%;
+          .cover {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+  .thresholdSlider {
+    width: 20px;
+    height: 240px;
+    margin-left: 50px;
+    .thresholdSliderThumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 25px;
+      color: white;
+      background-color: #fd8559;
+      border: 1px solid var(--second-border-color);
+      border-radius: 4px;
+      transform: translateX(-15px);
+      cursor: pointer;
+    }
+    .thresholdSliderTrack {
+      width: 100%;
+    }
+    .thresholdSliderTrack:first-child {
+      background: linear-gradient(#d71500, #fe895c);
+    }
+    .thresholdSliderTrack:nth-child(2) {
+      background-color: var(--second-bg-color);
+    }
+  }
+}
+
+.tooltip {
+  max-width: max-content;
+  :global(.ant-tooltip-inner) {
+    padding: 0;
+  }
+  .colorPicker {
+    box-shadow: none !important;
+    input {
+      color: #000;
+    }
+  }
+}
+
+.distanceMeasure {
+  margin-bottom: 20px;
+}

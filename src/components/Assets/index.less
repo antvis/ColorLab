@@ -1,0 +1,138 @@
+@import '~antd/es/style/themes/default.less';
+.assets {
+  height: 100%;
+  background-color: var(--main-bg-color);
+  .assetsTitle {
+    padding: 15px;
+    color: var(--main-text-color);
+    font-size: 16px;
+    .assetsTitleIcon {
+      margin-right: 10px;
+    }
+  }
+
+  .assetsContent {
+    height: calc(100% - 55px);
+    overflow-y: scroll;
+    background-color: var(--main-bg-color);
+    border-color: var(--main-border-color);
+    border-radius: 0;
+    :global(.ant-collapse > .ant-collapse-item:last-child) {
+      border-bottom: 0;
+    }
+    & > :global(.ant-collapse-item > .ant-collapse-header) {
+      background: var(--second-bg-color);
+    }
+  }
+
+  .importBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .importButton {
+      color: var(--second-text-color);
+      border-radius: 3px;
+    }
+    .importCodeButton {
+      width: 236px;
+      font-size: 14px;
+      svg {
+        transform: rotate(270deg);
+      }
+    }
+  }
+
+  .filterButtonChoosed,
+  .filterButton:hover {
+    color: @primary-color;
+  }
+
+  .filterPanel {
+    margin-top: 10px;
+    padding: 0 5px;
+    color: var(--second-text-color);
+    .filterPanelSubHeader {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .filterPanelFooter {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      .resetButton {
+        border: 0;
+        box-shadow: none;
+      }
+    }
+  }
+
+  .paletteTypes {
+    display: flex;
+    flex-wrap: wrap;
+    .paletteType {
+      display: flex;
+      flex-direction: column;
+      width: 87px;
+      margin: 0 5px;
+      text-align: center;
+      cursor: pointer;
+      svg {
+        font-size: 44px;
+      }
+      .paletteTypeText {
+        margin: 6px 0;
+      }
+      &:hover {
+        color: @primary-color;
+      }
+    }
+  }
+  .paletteTypesVertical {
+    flex-direction: column;
+    .paletteType {
+      margin: 15px 0;
+    }
+  }
+
+  .colorNumberRange {
+    .colorNumberInput {
+      width: 45%;
+    }
+    .colorNumberDivider {
+      display: inline-block;
+      width: 5%;
+      margin: 5px 2.5%;
+      border-top: 1px solid var(--second-text-color);
+    }
+  }
+
+  :global(.ant-collapse-item) {
+    border-color: var(--main-border-color);
+    :global(.ant-collapse-header) {
+      color: var(--main-text-color);
+    }
+  }
+
+  :global(.ant-collapse-content) {
+    background-color: var(--main-bg-color);
+    border-color: var(--main-border-color);
+  }
+
+  .minePanel {
+    :global(.ant-collapse-content-box) {
+      padding-bottom: 0;
+    }
+  }
+
+  .explorePanel {
+    :global(.ant-collapse-borderless) {
+      background-color: var(--main-bg-color);
+    }
+    :global(.ant-collapse-content-box) {
+      padding: 0 8px;
+    }
+  }
+}
