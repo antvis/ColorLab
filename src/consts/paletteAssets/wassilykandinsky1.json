@@ -1,0 +1,102 @@
+{
+  "brandName": "colorLab",
+  "palettes": [
+    {
+      "name": "wassily kandinsky 1",
+      "semantic": null,
+      "type": "categorical",
+      "colorScheme": "polychromatic",
+      "colors": [
+        {
+          "model": "rgba",
+          "value": {
+            "r": 245,
+            "g": 221,
+            "b": 95,
+            "a": 1
+          }
+        },
+        {
+          "model": "rgba",
+          "value": {
+            "r": 140,
+            "g": 203,
+            "b": 191,
+            "a": 1
+          }
+        },
+        {
+          "model": "rgba",
+          "value": {
+            "r": 189,
+            "g": 49,
+            "b": 42,
+            "a": 1
+          }
+        },
+        {
+          "model": "rgba",
+          "value": {
+            "r": 97,
+            "g": 30,
+            "b": 74,
+            "a": 1
+          }
+        },
+        {
+          "model": "rgba",
+          "value": {
+            "r": 221,
+            "g": 151,
+            "b": 54,
+            "a": 1
+          }
+        },
+        {
+          "model": "rgba",
+          "value": {
+            "r": 173,
+            "g": 212,
+            "b": 144,
+            "a": 1
+          }
+        },
+        {
+          "model": "rgb",
+          "value": {
+            "r": 38,
+            "g": 40,
+            "b": 43
+          }
+        },
+        {
+          "model": "rgba",
+          "value": {
+            "r": 67,
+            "g": 108,
+            "b": 96,
+            "a": 1
+          }
+        },
+        {
+          "model": "rgba",
+          "value": {
+            "r": 82,
+            "g": 121,
+            "b": 170,
+            "a": 1
+          }
+        },
+        {
+          "model": "rgba",
+          "value": {
+            "r": 187,
+            "g": 147,
+            "b": 194,
+            "a": 1
+          }
+        }
+      ]
+    }
+  ]
+}
