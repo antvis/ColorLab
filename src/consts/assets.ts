@@ -1,8 +1,19 @@
-import type { ColorSchema } from '@antv/color-schema';
+import wassilykandinsky1 from './paletteAssets/wassilykandinsky1.json';
+import wassilykandinsky2 from './paletteAssets/wassilykandinsky2.json';
+import wassilykandinsky3 from './paletteAssets/wassilykandinsky3.json';
+import type { CategoricalPalette, ColorSchema } from '@antv/color-schema';
+
+// @ts-ignore
+const wassilykandinskys: CategoricalPalette[] = [
+  wassilykandinsky1.palettes[0],
+  wassilykandinsky2.palettes[0],
+  wassilykandinsky3.palettes[0],
+];
 
 const ASSETS: ColorSchema = {
   brandName: 'colorLab',
   palettes: [
+    ...wassilykandinskys,
     {
       name: 'AntV10',
       semantic: null,

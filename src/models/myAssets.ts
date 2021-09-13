@@ -23,9 +23,7 @@ export default () => {
       for (let i = palettes.length - 1; i >= 0; i -= 1) {
         const palette = palettes[i];
         if (palette && palette.colors.length > 0 && !isContinuousPalette(palette) && !isMatrixPalette(palette)) {
-          if (!palette.id) {
-            palette.id = uuidv4();
-          }
+          palette.id = uuidv4();
           newAssets.palettes.unshift(palette);
         }
       }
@@ -34,9 +32,7 @@ export default () => {
       const palette = palettes;
       if (palette && palette.colors.length > 0 && !isContinuousPalette(palette) && !isMatrixPalette(palette)) {
         const newAssets = cloneDeep(myAssets);
-        if (!palette.id) {
-          palette.id = uuidv4();
-        }
+        palette.id = uuidv4();
         newAssets.palettes.unshift(palette);
         setMyAssets(newAssets);
       }
