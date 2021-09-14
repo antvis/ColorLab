@@ -18,6 +18,7 @@ const PaletteConfigSider = ({ colorSchemeInfo }: { colorSchemeInfo: ColorSchemeI
 
   return (
     <Sider
+      theme="light"
       width={320} /* 240 */
       collapsedWidth={0}
       className={styles.sider}
