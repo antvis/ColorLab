@@ -1,11 +1,11 @@
 import React from 'react';
 import { useIntl, useModel } from 'umi';
 import { Typography, InputNumber, Radio } from 'antd';
+import { isNumberConfig, isColorConfig, isRadioConfig } from '@/consts/colorSchemeInfos';
+import { ContinuousPaletteHighlightIcon } from '@/components/icons';
 import ColorSelectBox from './ColorSelectBox';
 import type { ColorSchemeInfo } from '@/consts/colorSchemeInfos';
 import styles from './index.less';
-import { isNumberConfig, isColorConfig, isRadioConfig } from '@/consts/colorSchemeInfos';
-import { ContinuousPaletteHighlightIcon } from '@/components/icons';
 
 const { Paragraph } = Typography;
 

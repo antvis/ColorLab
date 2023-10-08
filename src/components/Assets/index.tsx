@@ -11,13 +11,13 @@ import {
 } from '@ant-design/icons';
 import { isArray, differenceWith, isEqual } from 'lodash';
 import classNames from 'classnames';
-import type { ColorSchemeType, Palette } from '@antv/color-schema';
-import type { ColorSchemeInfo } from '@/consts/colorSchemeInfos';
-import styles from './index.less';
 import Swatch from '@/components/Swatch';
 import ImportPaletteModal from '@/components/Modal/ImportPaletteModal';
 import { COLOR_SCHEME_INFOS } from '@/consts/colorSchemeInfos';
 import ASSETS from '@/consts/assets';
+import type { ColorSchemeInfo } from '@/consts/colorSchemeInfos';
+import type { ColorSchemeType, Palette } from '@antv/color-schema';
+import styles from './index.less';
 
 const { Panel } = Collapse;
 

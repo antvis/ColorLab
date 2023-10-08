@@ -5,11 +5,11 @@ import { DownloadOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 import { isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
 import { paletteOptimization } from '@antv/smart-color';
-import styles from './index.less';
 import ColorBars from '@/components/ColorBars';
 import Optimization from '@/components/Optimization';
 import Dashboard from '@/components/Dashboard';
 import DASHBOARDS from '@/consts/dashboards';
+import styles from './index.less';
 
 const { Option } = Select;
 

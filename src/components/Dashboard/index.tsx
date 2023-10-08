@@ -2,11 +2,11 @@ import type { FC } from 'react';
 import React, { useEffect, useRef } from 'react';
 import { Col, Row } from 'antd';
 import * as G2Plot from '@antv/g2plot';
+import { getHexColors, getSimulationColors } from '@/util';
 import type { Palette } from '@antv/color-schema';
 import type { SimulationType } from '@antv/smart-color';
 import type { DashBoard } from '@/types/dashboard';
 import styles from './index.less';
-import { getHexColors, getSimulationColors } from '@/util';
 
 interface DashboardProps {
   dashborad?: DashBoard;
