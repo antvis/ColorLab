@@ -5,9 +5,9 @@ import calssNames from 'classnames';
 import { colorToHex, isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
 import { Button } from 'antd';
 import { DownloadOutlined, DeleteOutlined } from '@ant-design/icons';
+import ExportPaletteModal from '@/components/Modal/ExportPaletteModal';
 import type { Color, Palette } from '@antv/color-schema';
 import styles from './index.less';
-import ExportPaletteModal from '@/components/Modal/ExportPaletteModal';
 
 interface SwatchProps {
   palette: Palette;

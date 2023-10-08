@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { useIntl } from 'umi';
 import { Modal, Row, Col, Button } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
+import { copyToClipboard } from '@/util';
 import { EXPORT_PALETTE_TYPES, EXPORT_PALETTE_TYPE_INFOS } from './exportPaletteTypeInfos';
 import type { Palette } from '@antv/color-schema';
 import type { ExportPaletteType } from './exportPaletteTypeInfos';
 import styles from './index.less';
-import { copyToClipboard } from '@/util';
 
 interface ExportPaletteModalProps {
   palette: Palette;

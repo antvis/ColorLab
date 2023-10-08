@@ -3,10 +3,10 @@ import type { FC } from 'react';
 import { useModel } from 'umi';
 import classNames from 'classnames';
 import { isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
-import type { ProtestType } from '@/consts/protestInfo';
-import styles from './index.less';
 import DistanceMatrix from '@/components/DistanceMatrix';
 import ColorModel from '@/components/ColorModel';
+import type { ProtestType } from '@/consts/protestInfo';
+import styles from './index.less';
 
 interface ProtestProps {
   type: ProtestType;

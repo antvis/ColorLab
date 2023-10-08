@@ -1,6 +1,5 @@
 import React from 'react';
 import { TENDENCIES } from '@antv/smart-color';
-import type { ColorSchemeType, Color } from '@antv/color-schema';
 import {
   MonochromaticPaletteIcon,
   ComplementaryPaletteIcon,
@@ -21,6 +20,7 @@ import {
   GreyPolychromaticPaletteIcon,
   GreyCustomizedPaletteIcon,
 } from '@/components/icons';
+import type { ColorSchemeType, Color } from '@antv/color-schema';
 
 export interface ColorSchemeInfo {
   type: ColorSchemeType;

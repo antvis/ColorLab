@@ -3,9 +3,9 @@ import Plotly from 'plotly.js-dist';
 import chroma from 'chroma-js';
 import { ColorModelRange } from '@antv/color-schema';
 import { Radio } from 'antd';
+import { getHexColors } from '@/util';
 import type { CategoricalPalette, DiscreteScalePalette, ColorModel } from '@antv/color-schema';
 import styles from './index.less';
-import { getHexColors } from '@/util';
 
 interface ColorModelProps {
   palette: CategoricalPalette | DiscreteScalePalette;

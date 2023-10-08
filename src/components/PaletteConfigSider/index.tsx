@@ -1,11 +1,11 @@
 import React from 'react';
 import { useModel } from 'umi';
 import { Layout, Button } from 'antd';
+import { ClosePaletteConfigIcon } from '@/components/icons';
 import PaletteConfigPanel from './PaletteConfigPanel';
 import type { ColorSchemeInfo } from '@/consts/colorSchemeInfos';
 
 import styles from './index.less';
-import { ClosePaletteConfigIcon } from '@/components/icons';
 
 const { Sider } = Layout;
 

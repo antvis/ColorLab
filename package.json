@@ -1,8 +1,11 @@
 {
+  "name": "@antv/colorlab",
+  "version": "1.0.0",
+  "description": "Online Color Lab",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.jsx,.ts,.tsx \"./\"",
-    "lint-fix": "npm run lint -- --fix",
+    "fix": "npm run lint -- --fix",
     "prettier": " prettier --check '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "prettier-fix": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "format": "npm run prettier-fix && npm run lint-fix",
@@ -14,8 +17,7 @@
     "cc": "npm run clean && npm run clear",
     "postinstall": "umi generate tmp",
     "prepare": "husky install",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "test": "npm run lint && npm run build"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

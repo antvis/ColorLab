@@ -6,11 +6,11 @@ import { PictureFilled } from '@ant-design/icons';
 import { getPaletteFromString } from '@antv/smart-color';
 import classNames from 'classnames';
 import Ajv from 'ajv';
+import { JSONIcon } from '@/components/icons';
+import PaletteByImage from '@/components/PaletteByImage';
 import Swatch from '../Swatch';
 import type { ColorSchema, Palette } from '@antv/color-schema';
 import styles from './index.less';
-import { JSONIcon } from '@/components/icons';
-import PaletteByImage from '@/components/PaletteByImage';
 
 const { TabPane } = Tabs;
 const { Dragger } = Upload;

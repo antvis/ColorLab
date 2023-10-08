@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { cloneDeep } from 'lodash';
+import { isRadioConfig } from '@/consts/colorSchemeInfos';
 import type { Color } from '@antv/color-schema';
 import type { ColorSchemeInfo, ConfigItmeId } from '@/consts/colorSchemeInfos';
-import { isRadioConfig } from '@/consts/colorSchemeInfos';
 
 type paletteConfig = {
   [key in ConfigItmeId]?: any;

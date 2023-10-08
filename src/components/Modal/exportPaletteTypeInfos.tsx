@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { colorToHex, isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
+import { SvgIcon, JSONIcon, ArrIcon } from '@/components/icons';
 import type { Palette } from '@antv/color-schema';
 import styles from './index.less';
-import { SvgIcon, JSONIcon, ArrIcon } from '@/components/icons';
 
 export const EXPORT_PALETTE_TYPES = ['svg', 'array', 'colorlab'];
-export type ExportPaletteType = typeof EXPORT_PALETTE_TYPES[number];
+export type ExportPaletteType = (typeof EXPORT_PALETTE_TYPES)[number];
 
 const paletteToSvg = (palette: Palette, width = 350, height = 100) => {
   const rectWidth = width / palette.colors.length;

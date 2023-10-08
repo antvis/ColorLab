@@ -12,23 +12,23 @@ import {
 } from '@ant-design/icons';
 import { isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
 import { paletteGeneration } from '@antv/smart-color';
-import styles from './index.less';
 import { PaletteIcon, LayoutIcon, ControlIcon, GlassesIcon, ContrastIcon, SaveIcon } from '@/components/icons';
 import Assets from '@/components/Assets';
 import COLOR_BLINDNESS_SIMULATION_INFOS from '@/consts/colorBlindnessSimulationInfos';
 import PaletteConfigSider from '@/components/PaletteConfigSider';
 import ExportPaletteModal from '@/components/Modal/ExportPaletteModal';
 import { PROTEST_INFOS } from '@/consts/protestInfo';
+import styles from './index.less';
 
 const { Content, Sider } = Layout;
 const LANGUAGES = ['en-US', 'zh-CN'] as const;
-type Languages = typeof LANGUAGES[number];
+type Languages = (typeof LANGUAGES)[number];
 const LANGUAGE_NAME: Record<Languages, string> = {
   'en-US': 'English',
   'zh-CN': '简体中文',
 };
 
-export default ({ children }: { children: any }) => {
+const Layouts = ({ children }: { children: any }) => {
   const {
     location: { pathname },
   } = useHistory();
@@ -238,3 +238,5 @@ export default ({ children }: { children: any }) => {
     </Layout>
   );
 };
+
+export default Layouts;

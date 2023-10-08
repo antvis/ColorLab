@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
 import { v4 as uuidv4 } from 'uuid';
 import { cloneDeep, isEqual } from 'lodash';
-import type { Color, Palette, ColorValue } from '@antv/color-schema';
 import ASSETS from '@/consts/assets';
+import type { Color, Palette, ColorValue } from '@antv/color-schema';
 
 interface Snapshot {
   palette: Palette;

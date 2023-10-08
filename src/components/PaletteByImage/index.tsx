@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useIntl } from 'umi';
 import { Slider, InputNumber, Image } from 'antd';
 import { getPaletteFromImage } from '@antv/smart-color';
+import Swatch from '@/components/Swatch';
 import type { Palette } from '@antv/color-schema';
 import styles from './index.less';
-import Swatch from '@/components/Swatch';
 
 interface PaletteByImageProps {
   image: string;
