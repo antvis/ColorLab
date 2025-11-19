@@ -1,5 +1,5 @@
 <h1 align="center">
-<b>ColorLab: a professional Color Analysis and Production tool.</b>
+<b>ColorLab: Professional Color Analysis</b>
 </h1>
 
 <div align="center">
