@@ -5,7 +5,7 @@ import { ColorModelRange } from '@antv/color-schema';
 import { Radio } from 'antd';
 import { getHexColors } from '@/util';
 import type { CategoricalPalette, DiscreteScalePalette, ColorModel } from '@antv/color-schema';
-import styles from './index.less';
+import styles from './index.module.less';
 
 interface ColorModelProps {
   palette: CategoricalPalette | DiscreteScalePalette;

@@ -1,24 +1,32 @@
-import React from 'react';
-import type { FC } from 'react';
-import { useModel } from 'umi';
-import classNames from 'classnames';
-import { isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
-import DistanceMatrix from '@/components/DistanceMatrix';
-import ColorModel from '@/components/ColorModel';
-import type { ProtestType } from '@/consts/protestInfo';
-import styles from './index.less';
+import classNames from "classnames";
+import { isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
+import DistanceMatrix from "@/components/DistanceMatrix";
+import ColorModel from "@/components/ColorModel";
+import type { ProtestType } from "@/consts/protestInfo";
+import { useOutletContext } from "react-router-dom";
+import { useThemeContext } from "@/contexts/theme";
+import { useCurrentPaletteContext } from "@/contexts/currentPalette";
+import styles from "./index.module.less";
 
-interface ProtestProps {
-  type: ProtestType;
-}
+const Protest = () => {
+  const { type } = useOutletContext<{ type: ProtestType }>();
 
-const Protest: FC<ProtestProps> = ({ type }) => {
-  const { currentPalette, locked, updateColor, lockColor, removeColor, setCurrentPalette } = useModel('currentPalette');
-  const { theme } = useModel('theme');
+  const {
+    currentPalette,
+    locked,
+    updateColor,
+    lockColor,
+    removeColor,
+    setCurrentPalette,
+  } = useCurrentPaletteContext();
+  const { theme } = useThemeContext();
   let content = <></>;
-  if (!isContinuousPalette(currentPalette) && !isMatrixPalette(currentPalette)) {
+  if (
+    !isContinuousPalette(currentPalette) &&
+    !isMatrixPalette(currentPalette)
+  ) {
     switch (type) {
-      case 'distanceMatrix':
+      case "distanceMatrix":
         content = (
           <DistanceMatrix
             defaultThreshold={30}
@@ -31,15 +39,21 @@ const Protest: FC<ProtestProps> = ({ type }) => {
           />
         );
         break;
-      case 'colorModel':
-        content = <ColorModel palette={currentPalette} theme={theme}></ColorModel>;
+      case "colorModel":
+        content = (
+          <ColorModel palette={currentPalette} theme={theme}></ColorModel>
+        );
         break;
       default:
         break;
     }
   }
 
-  return <div className={classNames(styles.container, styles.protest)}>{content}</div>;
+  return (
+    <div className={classNames(styles.container, styles.protest)}>
+      {content}
+    </div>
+  );
 };
 
 export default Protest;

@@ -1,12 +1,19 @@
-import React from 'react';
-import Icon, { createFromIconfontCN } from '@ant-design/icons';
+import Icon, { createFromIconfontCN } from "@ant-design/icons";
 
 const PaletteSvg = () => (
   <svg width="15px" height="15px" viewBox="0 0 15 15">
     <g stroke="none" fill="none">
       <g id="初始界面" transform="translate(-571.000000, -20.000000)">
         <g id="颜色" transform="translate(569.000000, 18.000000)">
-          <rect id="矩形" fill="currentColor" opacity="0" x="0" y="0" width="19" height="19"></rect>
+          <rect
+            id="矩形"
+            fill="currentColor"
+            opacity="0"
+            x="0"
+            y="0"
+            width="19"
+            height="19"
+          ></rect>
           <path
             d="M14.000261,3.72677404 C16.1782959,5.52003898 16.8392168,8.0030212 16.8692586,8.11031056 L16.8692586,8.14096466 C17.1846981,9.88824845 16.9293423,11.1757207 16.1031912,12.0033815 C14.8414331,13.2448726 12.7535239,12.8463692 12.4681262,12.785061 C12.077582,12.7390799 11.7921844,12.8616963 11.5818914,13.1222562 C11.3565774,13.4134701 11.3115146,13.7966464 11.3866193,14.0265522 C11.5969123,14.6702883 11.6269542,15.1607539 11.4767449,15.5286031 C11.0411379,16.4942073 10.154903,17 8.8180403,17 C8.50260078,17 8.17214033,16.9693459 7.81163801,16.9233647 L7.72151244,16.9080377 C5.16795439,16.5095344 3.42552654,13.980571 3.35042189,13.8732816 C0.886989425,10.041519 2.11870566,6.16377511 4.44694976,4.017988 C6.76017293,1.8722009 10.6205519,0.95257785 14.000261,3.72677404 Z M5.04778695,4.69237824 C3.17017074,6.43966202 1.78824521,9.76563204 4.10146838,13.367489 C4.11648931,13.367489 5.69368693,15.6665466 7.8567008,15.9884146 L7.94682638,16.0037417 C9.40385656,16.2336475 10.2900914,15.9424335 10.6505937,15.1147728 C10.6505937,15.0994457 10.7256984,14.900194 10.5304263,14.287112 C10.3351542,13.7353382 10.4853635,13.0149668 10.8759077,12.5245012 C11.2814728,12.0033815 11.88231,11.7734757 12.5882937,11.8501109 L12.6333564,11.865438 C12.6483774,11.865438 14.5109727,12.2792684 15.4723122,11.3289912 C16.0581284,10.7465633 16.2383796,9.73497794 15.9830238,8.32488927 C15.92294,8.12563761 15.2770401,5.96452345 13.4144448,4.44714542 C10.4703426,1.9948173 7.09063339,2.80715099 5.04778695,4.69237824 Z M5,9 C5.55228475,9 6,9.44771525 6,10 C6,10.5522847 5.55228475,11 5,11 C4.44771525,11 4,10.5522847 4,10 C4,9.44771525 4.44771525,9 5,9 Z M13,8 C13.5522847,8 14,8.44771525 14,9 C14,9.55228475 13.5522847,10 13,10 C12.4477153,10 12,9.55228475 12,9 C12,8.44771525 12.4477153,8 13,8 Z M6,6 C6.55228475,6 7,6.44771524 7,7 C7,7.35726558 6.80940109,7.6873926 6.5,7.8660254 C6.19059893,8.0446582 5.80940107,8.0446582 5.5,7.8660254 C5.19059891,7.6873926 5,7.35726558 5,7 C5,6.44771524 5.44771525,6 6,6 Z M9,5 C9.55228475,5 10,5.44771525 10,6 C10,6.55228475 9.55228475,7 9,7 C8.44771525,7 8,6.55228475 8,6 C8,5.44771525 8.44771525,5 9,5 Z M12,5 C12.5522847,5 13,5.44771525 13,6 C13,6.55228475 12.5522847,7 12,7 C11.4477153,7 11,6.55228475 11,6 C11,5.44771525 11.4477153,5 12,5 Z"
             fill="currentColor"
@@ -24,7 +31,14 @@ const LayoutSvg = () => (
         <g transform="translate(569.000000, 18.000000)">
           <g transform="translate(144.000000, 0.000000)">
             <g transform="translate(0.000000, 4.000000)">
-              <rect fill="#000000" opacity="0" x="0" y="0" width="12" height="12"></rect>
+              <rect
+                fill="#000000"
+                opacity="0"
+                x="0"
+                y="0"
+                width="12"
+                height="12"
+              ></rect>
               <path
                 d="M11.7227679,2.29955357 C11.8700893,2.29955357 11.990625,2.17901786 11.990625,2.03169643 L11.990625,1.45714286 C11.990625,1.30178571 11.8647321,1.17589286 11.709375,1.17589286 L0.283928566,1.17589286 C0.128571422,1.17589286 0.00267856641,1.30178571 0.00267856641,1.45714286 L0.00267856641,10.5388393 C0.00267856641,10.6941964 0.128571422,10.8200893 0.283928566,10.8200893 L11.709375,10.8200893 C11.8647321,10.8200893 11.990625,10.6941964 11.990625,10.5388393 L11.990625,3.08973214 C11.990625,2.94241071 11.8700893,2.821875 11.7227679,2.821875 C11.5754464,2.821875 11.4549107,2.94241071 11.4549107,3.08973214 L11.4549107,3.42857143 L0.538392855,3.42857143 L0.538392855,1.71160714 L11.4549107,1.71160714 L11.4549107,2.03169643 C11.4549107,2.17901787 11.5754464,2.29955358 11.7227679,2.29955357 Z M11.4549107,10.284375 L3.10714286,10.284375 L3.10714286,3.96428571 L11.4549107,3.96428571 L11.4549107,10.284375 L11.4549107,10.284375 Z M2.57142857,3.96428571 L2.57142857,10.284375 L0.538392855,10.284375 L0.538392855,3.96428571 L2.57142857,3.96428571 Z"
                 fill="currentColor"
@@ -72,7 +86,11 @@ const ContrastSvg = () => (
         <g transform="translate(384.000000, 60.000000)">
           <g transform="translate(0.000000, 5.000000)">
             <g transform="translate(100.000000, 0.000000)">
-              <g transform="translate(98.000000, 1.000000)" fill="#000000" fillOpacity="0.65">
+              <g
+                transform="translate(98.000000, 1.000000)"
+                fill="#000000"
+                fillOpacity="0.65"
+              >
                 <g id="编组" transform="translate(0.000000, 4.000000)">
                   <path
                     d="M11.5149107,3.66441964 C10.5790565,1.44648189 8.40729293,0.00343896118 6,-1.90323947e-16 C2.685,0.00723214286 0,2.690625 0,6 C0,9.309375 2.685,11.9927679 6,12 C8.00876357,11.9944845 9.88163874,10.9846056 10.9900338,9.30930805 C12.0984289,7.63401051 12.2954274,5.51535327 11.5149107,3.66441964 Z M9.62316964,9.63669643 C8.66406694,10.6009977 7.36005691,11.1430779 6,11.1428572 L6,0.857142857 C8.07772197,0.862481861 9.94813214,2.11750142 10.7407342,4.03811044 C11.5333363,5.95871947 11.0924121,8.16758665 9.62316964,9.63669643 L9.62316964,9.63669643 Z"
@@ -91,7 +109,13 @@ const ContrastSvg = () => (
 
 const MoonSvg = () => (
   <svg width="11px" height="12px" viewBox="0 0 11 12">
-    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" fillOpacity="0.65">
+    <g
+      stroke="none"
+      strokeWidth="1"
+      fill="none"
+      fillRule="evenodd"
+      fillOpacity="0.65"
+    >
       <g transform="translate(-685.000000, -70.000000)" fill="#000000">
         <g transform="translate(384.000000, 60.000000)">
           <g transform="translate(0.000000, 5.000000)">
@@ -123,7 +147,11 @@ const SaveSvg = () => (
               strokeOpacity="0.15"
               stroke="#000000"
             ></path>
-            <g transform="translate(15.000000, 9.000000)" fill="#000000" fillOpacity="0.65">
+            <g
+              transform="translate(15.000000, 9.000000)"
+              fill="#000000"
+              fillOpacity="0.65"
+            >
               <path
                 d="M0.99296875,0.83171875 L0.99296875,13.1682812 L6,11.3804687 L11.0070313,13.1682812 L11.0070313,0.83171875 L0.99296875,0.83171875 Z M10.0070313,11.75 L6,10.3185937 L1.99296875,11.75 L1.99296875,1.83171875 L10.0070313,1.83171875 L10.0070313,11.75 Z M3.5,3.83171875 L8.5,3.83171875 L8.5,4.83171875 L3.5,4.83171875 L3.5,3.83171875 Z"
                 fill="currentColor"
@@ -139,7 +167,11 @@ const SaveSvg = () => (
 const ClosePaletteConfigSvg = () => (
   <svg width="20px" height="20px" viewBox="0 0 20 20">
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g transform="translate(-319.000000, -64.000000)" fill="#000000" fillRule="nonzero">
+      <g
+        transform="translate(-319.000000, -64.000000)"
+        fill="#000000"
+        fillRule="nonzero"
+      >
         <g transform="translate(0.000000, 48.000000)">
           <g transform="translate(319.000000, 16.000000)">
             <rect opacity="0" x="0" y="0" width="20" height="20"></rect>
@@ -157,7 +189,11 @@ const ClosePaletteConfigSvg = () => (
 const ContinuousPaletteHighlightSvg = () => (
   <svg width="16px" height="16px" viewBox="0 0 16 16">
     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g transform="translate(-237.000000, -574.000000)" fill="#000000" fillRule="nonzero">
+      <g
+        transform="translate(-237.000000, -574.000000)"
+        fill="#000000"
+        fillRule="nonzero"
+      >
         <g transform="translate(0.000000, 48.000000)">
           <g transform="translate(87.000000, 484.000000)">
             <g transform="translate(0.000000, 30.000000)">
@@ -178,7 +214,7 @@ const ContinuousPaletteHighlightSvg = () => (
 );
 
 const MyIcon = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_2613424_r1c0v7wabmm.js',
+  scriptUrl: "//at.alicdn.com/t/font_2613424_r1c0v7wabmm.js",
 });
 
 export const PaletteIcon = () => <Icon component={PaletteSvg} />;
@@ -195,28 +231,58 @@ export const MoonIcon = () => <Icon component={MoonSvg} />;
 
 export const SaveIcon = () => <Icon component={SaveSvg} />;
 
-export const GreyMonochromaticPaletteIcon = () => <MyIcon type="icon-GreyMonochromaticPalette" />;
-export const GreyComplementaryPaletteIcon = () => <MyIcon type="icon-GreyComplementaryPalette" />;
-export const GreySplitComplementaryPaletteIcon = () => <MyIcon type="icon-GreySplitComplementaryPalette" />;
-export const GreyAchromaticPaletteIcon = () => <MyIcon type="icon-GreyAchromaticPalette" />;
-export const GreyAnalogousPaletteIcon = () => <MyIcon type="icon-GreyAnalogousPalette" />;
-export const GreyTriadicPaletteIcon = () => <MyIcon type="icon-GreyTriadicPalette" />;
-export const GreyTetradicPaletteIcon = () => <MyIcon type="icon-GreyTetradicPalette" />;
-export const GreyPolychromaticPaletteIcon = () => <MyIcon type="icon-GreyPolychromaticPalette" />;
-export const GreyCustomizedPaletteIcon = () => <MyIcon type="icon-GreyCustomizedPalette" />;
-export const MonochromaticPaletteIcon = () => <MyIcon type="icon-monochromatic" />;
-export const ComplementaryPaletteIcon = () => <MyIcon type="icon-complementary" />;
-export const SplitComplementaryPaletteIcon = () => <MyIcon type="icon-split-complementary" />;
+export const GreyMonochromaticPaletteIcon = () => (
+  <MyIcon type="icon-GreyMonochromaticPalette" />
+);
+export const GreyComplementaryPaletteIcon = () => (
+  <MyIcon type="icon-GreyComplementaryPalette" />
+);
+export const GreySplitComplementaryPaletteIcon = () => (
+  <MyIcon type="icon-GreySplitComplementaryPalette" />
+);
+export const GreyAchromaticPaletteIcon = () => (
+  <MyIcon type="icon-GreyAchromaticPalette" />
+);
+export const GreyAnalogousPaletteIcon = () => (
+  <MyIcon type="icon-GreyAnalogousPalette" />
+);
+export const GreyTriadicPaletteIcon = () => (
+  <MyIcon type="icon-GreyTriadicPalette" />
+);
+export const GreyTetradicPaletteIcon = () => (
+  <MyIcon type="icon-GreyTetradicPalette" />
+);
+export const GreyPolychromaticPaletteIcon = () => (
+  <MyIcon type="icon-GreyPolychromaticPalette" />
+);
+export const GreyCustomizedPaletteIcon = () => (
+  <MyIcon type="icon-GreyCustomizedPalette" />
+);
+export const MonochromaticPaletteIcon = () => (
+  <MyIcon type="icon-monochromatic" />
+);
+export const ComplementaryPaletteIcon = () => (
+  <MyIcon type="icon-complementary" />
+);
+export const SplitComplementaryPaletteIcon = () => (
+  <MyIcon type="icon-split-complementary" />
+);
 export const AchromaticPaletteIcon = () => <MyIcon type="icon-achromatic" />;
 export const AnalogousPaletteIcon = () => <MyIcon type="icon-analogous" />;
 export const TriadicPaletteIcon = () => <MyIcon type="icon-triadic" />;
 export const TetradicPaletteIcon = () => <MyIcon type="icon-tetradic" />;
-export const PolychromaticPaletteIcon = () => <MyIcon type="icon-polychromatic" />;
+export const PolychromaticPaletteIcon = () => (
+  <MyIcon type="icon-polychromatic" />
+);
 export const CustomizedPaletteIcon = () => <MyIcon type="icon-customized" />;
 
-export const ClosePaletteConfigIcon = () => <Icon component={ClosePaletteConfigSvg} />;
+export const ClosePaletteConfigIcon = () => (
+  <Icon component={ClosePaletteConfigSvg} />
+);
 
-export const ContinuousPaletteHighlightIcon = () => <Icon component={ContinuousPaletteHighlightSvg} />;
+export const ContinuousPaletteHighlightIcon = () => (
+  <Icon component={ContinuousPaletteHighlightSvg} />
+);
 
 export const SvgIcon = () => <MyIcon type="icon-svg" />;
 export const JSONIcon = () => <MyIcon type="icon-json" />;

@@ -1,17 +1,25 @@
-import React from 'react';
-import { useIntl, useModel } from 'umi';
-import { Typography, InputNumber, Radio } from 'antd';
-import { isNumberConfig, isColorConfig, isRadioConfig } from '@/consts/colorSchemeInfos';
-import { ContinuousPaletteHighlightIcon } from '@/components/icons';
-import ColorSelectBox from './ColorSelectBox';
-import type { ColorSchemeInfo } from '@/consts/colorSchemeInfos';
-import styles from './index.less';
+import { useIntl } from "react-intl";
+import { Typography, InputNumber, Radio } from "antd";
+import {
+  isNumberConfig,
+  isColorConfig,
+  isRadioConfig,
+} from "@/consts/colorSchemeInfos";
+import { ContinuousPaletteHighlightIcon } from "@/components/icons";
+import ColorSelectBox from "./ColorSelectBox";
+import type { ColorSchemeInfo } from "@/consts/colorSchemeInfos";
+import { usePaletteConfigContext } from "@/contexts/paletteConfig";
+import styles from "./index.module.less";
 
 const { Paragraph } = Typography;
 
-const PaletteConfigPanel = ({ colorSchemeInfo }: { colorSchemeInfo: ColorSchemeInfo }) => {
+const PaletteConfigPanel = ({
+  colorSchemeInfo,
+}: {
+  colorSchemeInfo: ColorSchemeInfo;
+}) => {
   const { formatMessage } = useIntl();
-  const { paletteConfig, updatePaletteConfigItem } = useModel('paletteConfig');
+  const { paletteConfig, updatePaletteConfigItem } = usePaletteConfigContext();
   const { name, description, config } = colorSchemeInfo;
 
   return (
@@ -29,10 +37,12 @@ const PaletteConfigPanel = ({ colorSchemeInfo }: { colorSchemeInfo: ColorSchemeI
           if (isNumberConfig(item)) {
             return (
               <div className={styles.colorInfo} key={item.id}>
-                <label className={styles.colorInfoLabel}> {formatMessage({ id: item.name })} </label>
+                <label className={styles.colorInfoLabel}>
+                  {formatMessage({ id: item.name })}
+                </label>
                 <InputNumber
                   style={{
-                    width: '100%',
+                    width: "100%",
                   }}
                   autoFocus={false}
                   size="large"
@@ -48,7 +58,9 @@ const PaletteConfigPanel = ({ colorSchemeInfo }: { colorSchemeInfo: ColorSchemeI
           if (isColorConfig(item)) {
             return (
               <div className={styles.colorInfo} key={item.id}>
-                <label className={styles.colorInfoLabel}> {formatMessage({ id: item.name })} </label>
+                <label className={styles.colorInfoLabel}>
+                  {formatMessage({ id: item.name })}
+                </label>
                 <ColorSelectBox
                   color={paletteConfig[item.id]}
                   onChange={(value) => updatePaletteConfigItem(item.id, value)}
@@ -59,15 +71,23 @@ const PaletteConfigPanel = ({ colorSchemeInfo }: { colorSchemeInfo: ColorSchemeI
           if (isRadioConfig(item)) {
             return (
               <div className={styles.colorInfo} key={item.id}>
-                <label className={styles.colorInfoLabel}> {formatMessage({ id: item.name })} </label>
+                <label className={styles.colorInfoLabel}>
+                  {formatMessage({ id: item.name })}
+                </label>
                 <Radio.Group
                   value={paletteConfig[item.id]}
                   className={styles.colorTendency}
                   size="large"
-                  onChange={(event) => updatePaletteConfigItem(item.id, event.target.value)}
+                  onChange={(event) =>
+                    updatePaletteConfigItem(item.id, event.target.value)
+                  }
                 >
                   {item.options.map((option) => (
-                    <Radio.Button key={option} className={styles.continuousPaletteIcon} value={option}>
+                    <Radio.Button
+                      key={option}
+                      className={styles.continuousPaletteIcon}
+                      value={option}
+                    >
                       <ContinuousPaletteHighlightIcon />
                       <span> {formatMessage({ id: option })} </span>
                     </Radio.Button>

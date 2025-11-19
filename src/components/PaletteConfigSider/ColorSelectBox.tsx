@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SketchPicker } from 'react-color';
 import { colorToHex, hexToColor } from '@antv/smart-color';
 import type { Color } from '@antv/color-schema';
-import styles from './index.less';
+import styles from './index.module.less';
 
 const ColorSelectBox = ({ color, onChange }: { color: Color; onChange: (value: Color) => void }) => {
   const [showPicker, setShowPicker] = useState<boolean>(false);

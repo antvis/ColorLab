@@ -6,7 +6,7 @@ import { getHexColors, getSimulationColors } from '@/util';
 import type { Palette } from '@antv/color-schema';
 import type { SimulationType } from '@antv/smart-color';
 import type { DashBoard } from '@/types/dashboard';
-import styles from './index.less';
+import styles from './index.module.less';
 
 interface DashboardProps {
   dashborad?: DashBoard;

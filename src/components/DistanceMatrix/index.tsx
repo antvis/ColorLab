@@ -1,30 +1,48 @@
-import type { FC } from 'react';
-import React, { useState } from 'react';
-import { useIntl } from 'umi';
-import { Tooltip, Button, Radio } from 'antd';
-import { AppstoreOutlined, UnlockFilled, LockFilled, CloseOutlined } from '@ant-design/icons';
-import classNames from 'classnames';
-import chroma from 'chroma-js';
-import ReactSlider from 'react-slider';
-import { SketchPicker } from 'react-color';
-import { colorDifference, paletteOptimization, colorToHex } from '@antv/smart-color';
-import Optimization from '../Optimization';
-import type { CategoricalPalette, Color, DiscreteScalePalette, ColorValue, Palette } from '@antv/color-schema';
-import styles from './index.less';
+import type { FC } from "react";
+import { useState } from "react";
+import { useIntl } from "react-intl";
+import { Tooltip, Button, Radio } from "antd";
+import {
+  AppstoreOutlined,
+  UnlockFilled,
+  LockFilled,
+  CloseOutlined,
+} from "@ant-design/icons";
+import classNames from "classnames";
+import chroma from "chroma-js";
+import ReactSlider from "react-slider";
+import { SketchPicker } from "react-color";
+import {
+  colorDifference,
+  paletteOptimization,
+  colorToHex,
+} from "@antv/smart-color";
+import Optimization from "../Optimization";
+import type {
+  CategoricalPalette,
+  Color,
+  DiscreteScalePalette,
+  ColorValue,
+  Palette,
+} from "@antv/color-schema";
+import styles from "./index.module.less";
 
-type ColorDifferenceMeasure = 'euclidean' | 'CIEDE2000' | 'contrastRatio';
-const COLOR_DIFFERENCE_MEASURES: { measure: ColorDifferenceMeasure; name: string }[] = [
+type ColorDifferenceMeasure = "euclidean" | "CIEDE2000" | "contrastRatio";
+const COLOR_DIFFERENCE_MEASURES: {
+  measure: ColorDifferenceMeasure;
+  name: string;
+}[] = [
   {
-    measure: 'euclidean',
-    name: 'Euclidean Distance (La*b*)',
+    measure: "euclidean",
+    name: "Euclidean Distance (La*b*)",
   },
   {
-    measure: 'CIEDE2000',
-    name: 'CIEDE2000',
+    measure: "CIEDE2000",
+    name: "CIEDE2000",
   },
   {
-    measure: 'contrastRatio',
-    name: 'Contrast Ratio',
+    measure: "contrastRatio",
+    name: "Contrast Ratio",
   },
 ];
 const COLOR_DIFFERENCE_MEASURE_THRESHOLD_INFOS: Record<
@@ -48,9 +66,9 @@ const COLOR_DIFFERENCE_MEASURE_THRESHOLD_INFOS: Record<
   },
 };
 
-const startColor = '#D71500';
-const endColor = '#FE895C';
-const firstColumnWidth = '5%';
+const startColor = "#D71500";
+const endColor = "#FE895C";
+const firstColumnWidth = "5%";
 
 type UpdateColor = (index: number, color: ColorValue) => void;
 interface DistanceMatrixProps {
@@ -63,7 +81,7 @@ interface DistanceMatrixProps {
   removeColor: (index: number) => void;
 }
 
-type PickerState = 'L' | 'R' | 'N';
+type PickerState = "L" | "R" | "N";
 
 const sketchPicker = (
   color: string,
@@ -82,13 +100,13 @@ const sketchPicker = (
         if (updateColor) {
           const { r, g, b, a = 1 } = newColor.rgb;
           updateColor(index, {
-            model: 'rgba',
+            model: "rgba",
             value: { r, g, b, a },
           });
         }
         setEditingColor(undefined);
       }}
-      width={'260px'}
+      width={"260px"}
     />
   );
 };
@@ -102,74 +120,93 @@ const MatrixCell: FC<{
   threshold: number;
   updateColor?: UpdateColor;
 }> = ({ index1, index2, color1, color2, measure, threshold, updateColor }) => {
-  const colorScale = chroma.scale([startColor, endColor]).domain([0, threshold]);
+  const colorScale = chroma
+    .scale([startColor, endColor])
+    .domain([0, threshold]);
 
   const visibility = index1 !== index2;
   const difference = colorDifference(color1, color2, { measure });
-  const value = measure === 'contrastRatio' ? difference.toFixed(1) : Math.round(difference);
+  const value =
+    measure === "contrastRatio"
+      ? difference.toFixed(1)
+      : Math.round(difference);
 
-  const [showPicker, setShowPicker] = useState<PickerState>('N');
+  const [showPicker, setShowPicker] = useState<PickerState>("N");
   const [editingColor, setEditingColor] = useState<string>();
 
   let matrixCellLeftWidth = 50;
-  if (showPicker !== 'N') {
-    matrixCellLeftWidth = showPicker === 'L' ? 90 : 10;
+  if (showPicker !== "N") {
+    matrixCellLeftWidth = showPicker === "L" ? 90 : 10;
   }
   const hexColor1 = colorToHex(color1);
   const hexColor2 = colorToHex(color2);
   return (
     <div
       className={classNames(styles.matrixCell, {
-        [styles.matrixCellEditing]: showPicker !== 'N',
+        [styles.matrixCellEditing]: showPicker !== "N",
       })}
       style={{
-        visibility: visibility ? 'visible' : 'hidden',
+        visibility: visibility ? "visible" : "hidden",
         background:
           // @ts-ignore
-          visibility && value < threshold ? colorScale(value).hex() : 'var(--main-bg-color)',
-        color: value < threshold ? 'white' : 'var(--forth-text-color)',
+          visibility && value < threshold
+            ? colorScale(value).hex()
+            : "var(--main-bg-color)",
+        color: value < threshold ? "white" : "var(--forth-text-color)",
       }}
     >
-      {showPicker !== 'N' && (
+      {showPicker !== "N" && (
         <div className={styles.popover}>
           <div
             className={styles.cover}
             onClick={() => {
-              setShowPicker('N');
+              setShowPicker("N");
             }}
           />
         </div>
       )}
       <Tooltip
-        title={sketchPicker(editingColor || hexColor1, index1, setEditingColor, updateColor)}
+        title={sketchPicker(
+          editingColor || hexColor1,
+          index1,
+          setEditingColor,
+          updateColor
+        )}
         placement="bottom"
-        visible={showPicker === 'L'}
-        color={'#ffffff'}
+        visible={showPicker === "L"}
+        color={"#ffffff"}
         overlayClassName={styles.tooltip}
       >
         <div
           className={styles.matrixCellLeft}
           style={{
-            background: showPicker === 'L' ? editingColor || hexColor1 : hexColor1,
+            background:
+              showPicker === "L" ? editingColor || hexColor1 : hexColor1,
             width: `${matrixCellLeftWidth}%`,
           }}
-          onClick={() => setShowPicker('L')}
+          onClick={() => setShowPicker("L")}
         ></div>
       </Tooltip>
       <Tooltip
-        title={sketchPicker(editingColor || hexColor2, index2, setEditingColor, updateColor)}
+        title={sketchPicker(
+          editingColor || hexColor2,
+          index2,
+          setEditingColor,
+          updateColor
+        )}
         placement="bottom"
-        visible={showPicker === 'R'}
-        color={'#ffffff'}
+        visible={showPicker === "R"}
+        color={"#ffffff"}
         overlayClassName={styles.tooltip}
       >
         <div
           className={styles.matrixCellRight}
           style={{
-            background: showPicker === 'R' ? editingColor || hexColor2 : hexColor2,
+            background:
+              showPicker === "R" ? editingColor || hexColor2 : hexColor2,
             width: `${100 - matrixCellLeftWidth}%`,
           }}
-          onClick={() => setShowPicker('R')}
+          onClick={() => setShowPicker("R")}
         ></div>
       </Tooltip>
       <div className={styles.matrixCellText}> {value} </div>
@@ -215,7 +252,8 @@ const DistanceMatrix: FC<DistanceMatrixProps> = ({
 }) => {
   const { formatMessage } = useIntl();
   const [threshold, setThreshold] = useState<number>(defaultThreshold);
-  const [differenceMeasure, setDifferenceMeasure] = useState<ColorDifferenceMeasure>('euclidean');
+  const [differenceMeasure, setDifferenceMeasure] =
+    useState<ColorDifferenceMeasure>("euclidean");
   const { colors } = palette;
 
   const onDifferenceMeasureChange = (event: any) => {
@@ -226,7 +264,11 @@ const DistanceMatrix: FC<DistanceMatrixProps> = ({
 
   return (
     <>
-      <Radio.Group value={differenceMeasure} className={styles.distanceMeasure} onChange={onDifferenceMeasureChange}>
+      <Radio.Group
+        value={differenceMeasure}
+        className={styles.distanceMeasure}
+        onChange={onDifferenceMeasureChange}
+      >
         {COLOR_DIFFERENCE_MEASURES.map(({ measure, name }) => (
           <Radio.Button value={measure} key={measure}>
             {formatMessage({ id: name })}
@@ -237,7 +279,10 @@ const DistanceMatrix: FC<DistanceMatrixProps> = ({
         <div className={styles.distanceMatrix}>
           {/* header */}
           <div className={styles.matrixRow}>
-            <div style={{ width: firstColumnWidth }} className={styles.matrixLogo}>
+            <div
+              style={{ width: firstColumnWidth }}
+              className={styles.matrixLogo}
+            >
               <AppstoreOutlined />
             </div>
             {colors.map((color, index) => (
@@ -248,7 +293,11 @@ const DistanceMatrix: FC<DistanceMatrixProps> = ({
               >
                 <div className={styles.btns}>
                   {locked[index] ? (
-                    <Button shape="circle" icon={<LockFilled />} onClick={() => lockColor(index)} />
+                    <Button
+                      shape="circle"
+                      icon={<LockFilled />}
+                      onClick={() => lockColor(index)}
+                    />
                   ) : (
                     <>
                       <Button
@@ -296,9 +345,13 @@ const DistanceMatrix: FC<DistanceMatrixProps> = ({
               placement="right"
               title={formatMessage(
                 {
-                  id: 'Color discrimination threshold, generally take the value of {value}, can be better differentiation, suitable for all kinds of visualization scenes.',
+                  id: "Color discrimination threshold, generally take the value of {value}, can be better differentiation, suitable for all kinds of visualization scenes.",
                 },
-                { value: COLOR_DIFFERENCE_MEASURE_THRESHOLD_INFOS[differenceMeasure].default }
+                {
+                  value:
+                    COLOR_DIFFERENCE_MEASURE_THRESHOLD_INFOS[differenceMeasure]
+                      .default,
+                }
               )}
             >
               <div {...props}>{state.valueNow}</div>
@@ -312,7 +365,7 @@ const DistanceMatrix: FC<DistanceMatrixProps> = ({
           updatePalette(
             paletteOptimization(palette, {
               locked,
-              simulationType: 'normal',
+              simulationType: "normal",
               threshold,
               colorDifferenceMeasure: differenceMeasure,
             }),
