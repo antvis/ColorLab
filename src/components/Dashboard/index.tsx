@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import React, { useEffect, useRef } from 'react';
 import { Col, Row } from 'antd';
 import * as G2Plot from '@antv/g2plot';
-import { getHexColors, getSimulationColors } from '@/util';
+import { getHexColors, getSimulationColors } from '@/utils';
 import type { Palette } from '@antv/color-schema';
 import type { SimulationType } from '@antv/smart-color';
 import type { DashBoard } from '@/types/dashboard';

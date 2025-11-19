@@ -6,7 +6,7 @@ import { EditOutlined, UnlockFilled, LockFilled, CloseOutlined } from '@ant-desi
 import { SketchPicker } from 'react-color';
 import classNames from 'classnames';
 import { invertGrayscale, colorSimulation, colorToGray, colorToHex } from '@antv/smart-color';
-import { copyToClipboard } from '../../util';
+import { copyToClipboard } from '@/utils';
 import type { ColorValue, Color } from '@antv/color-schema';
 import type { SimulationType } from '@antv/smart-color';
 import styles from "./index.module.less";
