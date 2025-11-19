@@ -11,9 +11,11 @@ import {
   CloseOutlined,
   FolderOpenOutlined,
   TranslationOutlined,
+  GithubOutlined,
 } from "@ant-design/icons";
 import { isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
 import { paletteGeneration } from "@antv/smart-color";
+import { GITHUB_URL } from "@/constants";
 import {
   PaletteIcon,
   LayoutIcon,
@@ -68,7 +70,7 @@ const Layouts = () => {
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const [currentProtestType, setCurrentProtestType] = useState(
-    PROTEST_INFOS[0].type
+    PROTEST_INFOS[0].type,
   );
   const { colorSchemeInfo } = useColorSchemeInfoContext();
   const { setPaletteConfigCollapsed } = usePaletteConfigCollapsedContext();
@@ -90,7 +92,7 @@ const Layouts = () => {
     ) {
       const palette = paletteGeneration(colorSchemeInfo.type, {
         colors: currentPalette.colors.map((color, i) =>
-          locked[i] ? color : undefined
+          locked[i] ? color : undefined,
         ),
         ...paletteConfig,
       });
@@ -209,6 +211,13 @@ const Layouts = () => {
             icon={<BulbOutlined />}
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           />
+          <Button
+            className={styles.toolbarButton}
+            icon={<GithubOutlined />}
+            onClick={() => {
+              window.open(GITHUB_URL, "_blank", "noopener,noreferrer");
+            }}
+          />
         </div>
       </div>
       <Layout>
@@ -260,7 +269,7 @@ const Layouts = () => {
                     {isBlindSimulation
                       ? formatMessage({
                           id: COLOR_BLINDNESS_SIMULATION_INFOS.find(
-                            (simulation) => simulation.type === simulationType
+                            (simulation) => simulation.type === simulationType,
                           )?.name,
                         })
                       : formatMessage({
