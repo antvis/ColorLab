@@ -8,7 +8,7 @@ import { paletteOptimization } from "@antv/smart-color";
 import ColorBars from "@/components/ColorBars";
 import Optimization from "@/components/Optimization";
 import Dashboard from "@/components/Dashboard";
-import DASHBOARDS from "@/consts/dashboards";
+import DASHBOARDS from "@/constants/dashboards";
 import { useThemeContext } from "@/contexts/theme";
 import { useSimulationTypeContext } from "@/contexts/simulationType";
 import { useCurrentPaletteContext } from "@/contexts/currentPalette";

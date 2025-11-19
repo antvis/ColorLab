@@ -15,7 +15,7 @@ export default {
   // pages/protest
   'Distance Matrix': '距离矩阵',
   'Color Model': '色彩模型',
-  // consts/colorBlindnessSimulationInfos
+  // constants/colorBlindnessSimulationInfos
   Normal: '正常模式',
   '90-92% of man, 99.5% of woman': '约占全球男性90-92%，女性99.5%',
   Achromatopsia: '全色盲',

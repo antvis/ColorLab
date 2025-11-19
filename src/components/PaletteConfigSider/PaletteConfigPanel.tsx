@@ -4,10 +4,10 @@ import {
   isNumberConfig,
   isColorConfig,
   isRadioConfig,
-} from "@/consts/colorSchemeInfos";
+} from "@/constants/colorSchemeInfos";
 import { ContinuousPaletteHighlightIcon } from "@/components/icons";
 import ColorSelectBox from "./ColorSelectBox";
-import type { ColorSchemeInfo } from "@/consts/colorSchemeInfos";
+import type { ColorSchemeInfo } from "@/constants/colorSchemeInfos";
 import { usePaletteConfigContext } from "@/contexts/paletteConfig";
 import styles from "./index.module.less";
 
