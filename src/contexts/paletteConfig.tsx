@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useCallback } from "react";
 import { noop, cloneDeep } from "lodash";
-import type { ColorSchemeInfo, ConfigItemId } from "@/consts/colorSchemeInfos";
-import { isRadioConfig } from "@/consts/colorSchemeInfos";
+import type { ColorSchemeInfo, ConfigItemId } from "@/constants/colorSchemeInfos";
+import { isRadioConfig } from "@/constants/colorSchemeInfos";
 import type { Color } from "@antv/color-schema";
 
 type PaletteConfig = {

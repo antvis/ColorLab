@@ -2,7 +2,7 @@ import { Layout, Button } from "antd";
 import { ClosePaletteConfigIcon } from "@/components/icons";
 import PaletteConfigPanel from "./PaletteConfigPanel";
 import { usePaletteConfigCollapsedContext } from "@/contexts/paletteConfigCollapsed";
-import type { ColorSchemeInfo } from "@/consts/colorSchemeInfos";
+import type { ColorSchemeInfo } from "@/constants/colorSchemeInfos";
 import styles from "./index.module.less";
 
 const { Sider } = Layout;

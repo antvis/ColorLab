@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
 import { v4 as uuidv4 } from "uuid";
 import { cloneDeep, isEqual, noop } from "lodash";
-import ASSETS from "@/consts/assets";
+import ASSETS from "@/constants/assets";
 import type { Color, Palette, ColorValue } from "@antv/color-schema";
 
 interface Snapshot {

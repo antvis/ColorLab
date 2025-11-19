@@ -23,10 +23,10 @@ import {
   SaveIcon,
 } from "@/components/icons";
 import Assets from "@/components/Assets";
-import COLOR_BLINDNESS_SIMULATION_INFOS from "@/consts/colorBlindnessSimulationInfos";
+import COLOR_BLINDNESS_SIMULATION_INFOS from "@/constants/colorBlindnessSimulationInfos";
 import PaletteConfigSider from "@/components/PaletteConfigSider";
 import ExportPaletteModal from "@/components/Modal/ExportPaletteModal";
-import { PROTEST_INFOS } from "@/consts/protestInfo";
+import { PROTEST_INFOS } from "@/constants/protestInfo";
 import { useColorSchemeInfoContext } from "@/contexts/colorSchemeInfo";
 import { useThemeContext } from "@/contexts/theme";
 import { useSimulationTypeContext } from "@/contexts/simulationType";

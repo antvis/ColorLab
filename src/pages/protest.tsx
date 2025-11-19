@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
 import DistanceMatrix from "@/components/DistanceMatrix";
 import ColorModel from "@/components/ColorModel";
-import type { ProtestType } from "@/consts/protestInfo";
+import type { ProtestType } from "@/constants/protestInfo";
 import { useOutletContext } from "react-router-dom";
 import { useThemeContext } from "@/contexts/theme";
 import { useCurrentPaletteContext } from "@/contexts/currentPalette";

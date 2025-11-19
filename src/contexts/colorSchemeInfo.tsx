@@ -5,8 +5,8 @@ import {
   useEffect,
   useCallback,
 } from "react";
-import type { ColorSchemeInfo } from "@/consts/colorSchemeInfos";
-import { COLOR_SCHEME_INFOS } from "@/consts/colorSchemeInfos";
+import type { ColorSchemeInfo } from "@/constants/colorSchemeInfos";
+import { COLOR_SCHEME_INFOS } from "@/constants/colorSchemeInfos";
 import { noop } from "lodash";
 import { usePaletteConfigContext } from "@/contexts/paletteConfig";
 

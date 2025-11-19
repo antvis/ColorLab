@@ -15,7 +15,7 @@ export default {
   // pages/protest
   'Distance Matrix': 'Distance Matrix',
   'Color Model': 'Color Model',
-  // consts/colorBlindnessSimulationInfos
+  // constants/colorBlindnessSimulationInfos
   Normal: 'Normal',
   '90-92% of man, 99.5% of woman': '90-92% of man, 99.5% of woman',
   Achromatopsia: 'Achromatopsia',
