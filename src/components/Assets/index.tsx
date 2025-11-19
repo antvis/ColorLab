@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useModel, useIntl } from 'umi';
-import { Space, Collapse, Button, Divider, InputNumber, message } from 'antd';
+import { useState } from "react";
+import { useIntl } from "react-intl";
+import { Space, Collapse, Button, Divider, InputNumber, message } from "antd";
 import {
   ImportOutlined,
   PictureFilled,
@@ -8,32 +8,36 @@ import {
   FilterOutlined,
   ReloadOutlined,
   UpOutlined,
-} from '@ant-design/icons';
-import { isArray, differenceWith, isEqual } from 'lodash';
-import classNames from 'classnames';
-import Swatch from '@/components/Swatch';
-import ImportPaletteModal from '@/components/Modal/ImportPaletteModal';
-import { COLOR_SCHEME_INFOS } from '@/consts/colorSchemeInfos';
-import ASSETS from '@/consts/assets';
-import type { ColorSchemeInfo } from '@/consts/colorSchemeInfos';
-import type { ColorSchemeType, Palette } from '@antv/color-schema';
-import styles from './index.less';
+} from "@ant-design/icons";
+import { isArray, differenceWith, isEqual } from "lodash";
+import classNames from "classnames";
+import Swatch from "@/components/Swatch";
+import ImportPaletteModal from "@/components/Modal/ImportPaletteModal";
+import { COLOR_SCHEME_INFOS } from "@/consts/colorSchemeInfos";
+import ASSETS from "@/consts/assets";
+import { useColorSchemeInfoContext } from "@/contexts/colorSchemeInfo";
+import type { ColorSchemeInfo } from "@/consts/colorSchemeInfos";
+import { usePaletteConfigCollapsedContext } from "@/contexts/paletteConfigCollapsed";
+import type { ColorSchemeType, Palette } from "@antv/color-schema";
+import { useMyAssetsContext } from "@/contexts/myAssets";
+import styles from "./index.module.less";
 
 const { Panel } = Collapse;
 
 const Assets = (props: { collapsed: boolean }) => {
   const { formatMessage } = useIntl();
   const { collapsed = false } = props;
-  const { myAssets, savePalette, deletePalette } = useModel('myAssets');
-  const { colorSchemeInfo, setColorSchemeInfo } = useModel('colorSchemeInfo');
-  const { setPaletteConfigCollapsed } = useModel('paletteConfigCollapsed');
+  const { myAssets, savePalette, deletePalette } = useMyAssetsContext();
+  const { colorSchemeInfo, setColorSchemeInfo } = useColorSchemeInfoContext();
+  const { setPaletteConfigCollapsed } = usePaletteConfigCollapsedContext();
 
   const [isImportingByCode, setIsImportingByCode] = useState<boolean>(false);
   const [isImportingByImage, setIsImportingByImage] = useState<boolean>(false);
   const [isFiltering, setIsFiltering] = useState<boolean>(false);
   const defaultColorNumberRange: [number, number] = [4, 12];
-  const [colorNumberRange, setColorNumberRange] =
-    useState<[number, number]>(defaultColorNumberRange);
+  const [colorNumberRange, setColorNumberRange] = useState<[number, number]>(
+    defaultColorNumberRange
+  );
   const [colorScheme, setColorScheme] = useState<ColorSchemeType>();
 
   const handleInputCodeOk = (input: Palette | Palette[]) => {
@@ -49,7 +53,9 @@ const Assets = (props: { collapsed: boolean }) => {
       savePalette(newPalettes);
     }
     if (palettes.length > newPalettes.length) {
-      message.warning(formatMessage({ id: 'Duplicate palettes will not be re-imported.' }));
+      message.warning(
+        formatMessage({ id: "Duplicate palettes will not be re-imported." })
+      );
     }
     setIsImportingByCode(false);
   };
@@ -69,7 +75,9 @@ const Assets = (props: { collapsed: boolean }) => {
 
   const filterPanel = (
     <div className={styles.filterPanel}>
-      <div className={styles.filterPanelSubHeader}>{formatMessage({ id: 'Color Scheme' })}</div>
+      <div className={styles.filterPanelSubHeader}>
+        {formatMessage({ id: "Color Scheme" })}
+      </div>
       <div className={styles.paletteTypes}>
         {COLOR_SCHEME_INFOS.map((info) => (
           <div
@@ -80,12 +88,18 @@ const Assets = (props: { collapsed: boolean }) => {
               else setColorScheme(info.type);
             }}
           >
-            {colorScheme && colorScheme !== info.type ? info.icon : info.highlightIcon}
-            <small className={styles.paletteTypeText}>{formatMessage({ id: info.name })}</small>
+            {colorScheme && colorScheme !== info.type
+              ? info.icon
+              : info.highlightIcon}
+            <small className={styles.paletteTypeText}>
+              {formatMessage({ id: info.name })}
+            </small>
           </div>
         ))}
       </div>
-      <div className={styles.filterPanelSubHeader}>{formatMessage({ id: 'Color Number' })}</div>
+      <div className={styles.filterPanelSubHeader}>
+        {formatMessage({ id: "Color Number" })}
+      </div>
       <div className={styles.colorNumberRange}>
         <InputNumber
           name="Min. number of colors"
@@ -125,7 +139,7 @@ const Assets = (props: { collapsed: boolean }) => {
             setColorScheme(undefined);
           }}
         >
-          {formatMessage({ id: 'Reset' })}
+          {formatMessage({ id: "Reset" })}
         </Button>
         <Button
           className={styles.collapseButton}
@@ -136,10 +150,10 @@ const Assets = (props: { collapsed: boolean }) => {
             setIsFiltering(false);
           }}
         >
-          {formatMessage({ id: 'Collapse' })}
+          {formatMessage({ id: "Collapse" })}
         </Button>
       </div>
-      <Divider style={{ margin: '10px 0' }} />
+      <Divider style={{ margin: "10px 0" }} />
     </div>
   );
 
@@ -151,14 +165,21 @@ const Assets = (props: { collapsed: boolean }) => {
   if (collapsed) {
     return (
       <div className={styles.assets}>
-        <div className={classNames(styles.paletteTypes, styles.paletteTypesVertical)}>
+        <div
+          className={classNames(
+            styles.paletteTypes,
+            styles.paletteTypesVertical
+          )}
+        >
           {COLOR_SCHEME_INFOS.map((info) => (
             <div
               className={styles.paletteType}
               key={info.type}
               onClick={() => changePaletteTypeConfig(info)}
             >
-              {colorSchemeInfo.type === info.type ? info.highlightIcon : info.icon}
+              {colorSchemeInfo.type === info.type
+                ? info.highlightIcon
+                : info.icon}
             </div>
           ))}
         </div>
@@ -170,12 +191,15 @@ const Assets = (props: { collapsed: boolean }) => {
     <div className={styles.assets}>
       <div className={styles.assetsTitle}>
         <FolderOpenOutlined className={styles.assetsTitleIcon} />
-        <span>{formatMessage({ id: 'Palette Assets' })}</span>
+        <span>{formatMessage({ id: "Palette Assets" })}</span>
       </div>
 
-      <Collapse defaultActiveKey={['mine', 'explore']} className={styles.assetsContent}>
+      <Collapse
+        defaultActiveKey={["mine", "explore"]}
+        className={styles.assetsContent}
+      >
         <Panel
-          header={formatMessage({ id: 'My Palettes' })}
+          header={formatMessage({ id: "My Palettes" })}
           key="mine"
           showArrow={false}
           className={styles.minePanel}
@@ -184,14 +208,17 @@ const Assets = (props: { collapsed: boolean }) => {
             <Space>
               <Button
                 size="large"
-                className={classNames(styles.importButton, styles.importCodeButton)}
+                className={classNames(
+                  styles.importButton,
+                  styles.importCodeButton
+                )}
                 block
                 icon={<ImportOutlined />}
                 onClick={() => {
                   setIsImportingByCode(true);
                 }}
               >
-                {formatMessage({ id: 'Import Palette' })}
+                {formatMessage({ id: "Import Palette" })}
               </Button>
               <ImportPaletteModal
                 type="code"
@@ -223,7 +250,7 @@ const Assets = (props: { collapsed: boolean }) => {
           ))}
         </Panel>
         <Panel
-          header={formatMessage({ id: 'Explore' })}
+          header={formatMessage({ id: "Explore" })}
           key="explore"
           showArrow={false}
           extra={
@@ -240,20 +267,30 @@ const Assets = (props: { collapsed: boolean }) => {
           className={styles.explorePanel}
         >
           {isFiltering && filterPanel}
-          <Collapse bordered={false} defaultActiveKey={COLOR_SCHEME_INFOS.map((info) => info.type)}>
+          <Collapse
+            bordered={false}
+            defaultActiveKey={COLOR_SCHEME_INFOS.map((info) => info.type)}
+          >
             {COLOR_SCHEME_INFOS.map((info) => {
               if (colorScheme && info.type !== colorScheme) return null;
               const palettes = ASSETS.palettes.filter(
                 (palette) =>
-                  (palette.colorScheme ? palette.colorScheme : 'customized') === info.type &&
+                  (palette.colorScheme ? palette.colorScheme : "customized") ===
+                    info.type &&
                   palette.colors.length >= colorNumberRange[0] &&
-                  palette.colors.length <= colorNumberRange[1],
+                  palette.colors.length <= colorNumberRange[1]
               );
               if (palettes.length) {
                 return (
-                  <Panel header={formatMessage({ id: info.name })} key={info.type}>
+                  <Panel
+                    header={formatMessage({ id: info.name })}
+                    key={info.type}
+                  >
                     {palettes.map((palette) => (
-                      <Swatch palette={palette} key={palette.id || palette.name} />
+                      <Swatch
+                        palette={palette}
+                        key={palette.id || palette.name}
+                      />
                     ))}
                   </Panel>
                 );

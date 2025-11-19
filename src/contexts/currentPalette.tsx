@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
-import { isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
-import { v4 as uuidv4 } from 'uuid';
-import { cloneDeep, isEqual } from 'lodash';
-import ASSETS from '@/consts/assets';
-import type { Color, Palette, ColorValue } from '@antv/color-schema';
+import { createContext, useContext, useState, useEffect } from "react";
+import { isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
+import { v4 as uuidv4 } from "uuid";
+import { cloneDeep, isEqual, noop } from "lodash";
+import ASSETS from "@/consts/assets";
+import type { Color, Palette, ColorValue } from "@antv/color-schema";
 
 interface Snapshot {
   palette: Palette;
 }
 
+const defaultPalette = ASSETS.palettes[0];
 const MAX_SNAPSHOT = 200;
 
 const setIDs = (palette: Palette, update = false) => {
@@ -23,11 +24,35 @@ const setIDs = (palette: Palette, update = false) => {
   return newPalette;
 };
 
-export default () => {
-  const defaultPalette = ASSETS.palettes[0];
-  const newPalette = setIDs(defaultPalette);
+const newPalette = setIDs(defaultPalette);
+
+const CurrentPaletteContext = createContext({
+  currentPalette: newPalette,
+  locked: new Array(newPalette.colors.length).fill(false) as boolean[],
+  setCurrentPalette: noop as (
+    palette: Palette,
+    updateId?: boolean,
+    updateLocked?: boolean
+  ) => void,
+  addColor: noop as (index: number, color: ColorValue) => string,
+  updateColor: noop as (index: number, color: ColorValue) => void,
+  removeColor: noop as (index: number) => void,
+  reorderColor: noop as (source: number, destination: number) => void,
+  lockColor: noop as (index: number) => void,
+  canUndo: false,
+  canRedo: false,
+  undo: noop as () => void,
+  redo: noop as () => void,
+  snapshot: noop as (palette: Palette) => void,
+});
+
+const CurrentPaletteProvider: React.FC<{
+  children?: React.ReactNode;
+}> = ({ children }) => {
   const [currentPalette, setPalette] = useState<Palette>(newPalette);
-  const [locked, setLocked] = useState<boolean[]>(new Array(newPalette.colors.length).fill(false));
+  const [locked, setLocked] = useState<boolean[]>(
+    new Array(newPalette.colors.length).fill(false)
+  );
   const [snapshots, setSnapshots] = useState<Snapshot[]>([]);
   const [cursor, setCursor] = useState<number>(-1);
   const canUndo = snapshots.length > 0 && cursor > 0;
@@ -65,12 +90,17 @@ export default () => {
     setCursor(newSnapshots.length - 1);
   };
 
-  const setCurrentPalette = (palette: Palette, updateId: boolean = true, updateLocked: boolean = true) => {
+  const setCurrentPalette = (
+    palette: Palette,
+    updateId: boolean = true,
+    updateLocked: boolean = true
+  ) => {
     if (updateId) {
       // change palette
       const paletteWithID = setIDs(palette);
       setPalette(paletteWithID);
-      if (updateLocked) setLocked(new Array(paletteWithID.colors.length).fill(false));
+      if (updateLocked)
+        setLocked(new Array(paletteWithID.colors.length).fill(false));
 
       snapshot(paletteWithID);
     } else {
@@ -84,7 +114,10 @@ export default () => {
   };
 
   const updateColor = (index: number, color: ColorValue) => {
-    if (!isContinuousPalette(currentPalette) && !isMatrixPalette(currentPalette)) {
+    if (
+      !isContinuousPalette(currentPalette) &&
+      !isMatrixPalette(currentPalette)
+    ) {
       const clonePalette = cloneDeep(currentPalette);
       const { colors } = clonePalette;
       if (!isEqual(colors[index].value, color.value)) {
@@ -97,7 +130,10 @@ export default () => {
   };
 
   const removeColor = (index: number) => {
-    if (!isContinuousPalette(currentPalette) && !isMatrixPalette(currentPalette)) {
+    if (
+      !isContinuousPalette(currentPalette) &&
+      !isMatrixPalette(currentPalette)
+    ) {
       const clonePalette = cloneDeep(currentPalette);
       const { colors } = clonePalette;
       colors.splice(index, 1);
@@ -114,7 +150,10 @@ export default () => {
   const addColor = (index: number, color: ColorValue) => {
     const id = uuidv4();
 
-    if (!isContinuousPalette(currentPalette) && !isMatrixPalette(currentPalette)) {
+    if (
+      !isContinuousPalette(currentPalette) &&
+      !isMatrixPalette(currentPalette)
+    ) {
       const clonePalette = cloneDeep(currentPalette);
       const { colors } = clonePalette;
       const newColor: Color = {
@@ -134,7 +173,10 @@ export default () => {
   };
 
   const reorderColor = (source: number, destination: number) => {
-    if (!isContinuousPalette(currentPalette) && !isMatrixPalette(currentPalette)) {
+    if (
+      !isContinuousPalette(currentPalette) &&
+      !isMatrixPalette(currentPalette)
+    ) {
       const clonePalette = cloneDeep(currentPalette);
       const { colors } = clonePalette;
       const temp = colors[source];
@@ -162,20 +204,40 @@ export default () => {
     snapshot(defaultPalette);
   }, []);
 
-  return {
-    currentPalette,
-    locked,
-    setCurrentPalette,
-    addColor,
-    updateColor,
-    removeColor,
-    reorderColor,
-    lockColor,
+  return (
+    <CurrentPaletteContext.Provider
+      value={{
+        currentPalette,
+        locked,
+        setCurrentPalette,
+        addColor,
+        updateColor,
+        removeColor,
+        reorderColor,
+        lockColor,
 
-    canUndo,
-    canRedo,
-    undo,
-    redo,
-    snapshot,
+        canUndo,
+        canRedo,
+        undo,
+        redo,
+        snapshot,
+      }}
+    >
+      {children}
+    </CurrentPaletteContext.Provider>
+  );
+};
+
+export const withCurrentPaletteProvider =
+  <T extends Record<string, any>>(Component: React.ComponentType<T>) =>
+  (props: T) => {
+    return (
+      <CurrentPaletteProvider>
+        <Component {...props} />
+      </CurrentPaletteProvider>
+    );
   };
+
+export const useCurrentPaletteContext = () => {
+  return useContext(CurrentPaletteContext);
 };

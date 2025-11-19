@@ -10,7 +10,7 @@ import { ColorBar } from './ColorBar';
 import type { SimulationType } from '@antv/smart-color';
 import type { CategoricalPalette, DiscreteScalePalette, ColorValue } from '@antv/color-schema';
 import type { ColorBarSizeType } from './ColorBar';
-import styles from './index.less';
+import styles from "./index.module.less";
 
 interface ColorBarsProps {
   palette: CategoricalPalette | DiscreteScalePalette;

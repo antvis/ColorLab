@@ -1,6 +1,7 @@
-import { PaletteType } from '@antv/color-schema';
+import type { PaletteType } from "@antv/color-schema";
 
-type ChartType = 'Heatmap' | 'Area' | 'Pie' | 'Column' | 'Line';
+type ChartType = "Heatmap" | "Area" | "Pie" | "Column" | "Line";
+
 interface Chart {
   id: string;
   type: ChartType;
@@ -8,6 +9,7 @@ interface Chart {
   config?: any;
   span?: number; // width: [1, 24]
 }
+
 export interface DashBoard {
   name: string;
   type: PaletteType;

@@ -1,16 +1,19 @@
-import type { FC } from 'react';
-import React from 'react';
-import { Button } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { useIntl } from 'umi';
-import styles from './index.less';
+import type { FC } from "react";
+import React from "react";
+import { Button } from "antd";
+import { InfoCircleOutlined } from "@ant-design/icons";
+import { useIntl } from "react-intl";
+import styles from "./index.module.less";
 
 interface OptimizationProps {
   style?: React.CSSProperties;
   optimize?: () => void;
 }
 
-const Optimization: FC<OptimizationProps> = ({ style = {}, optimize = () => {} }) => {
+const Optimization: FC<OptimizationProps> = ({
+  style = {},
+  optimize = () => {},
+}) => {
   const { formatMessage } = useIntl();
   return (
     <Button
@@ -21,7 +24,7 @@ const Optimization: FC<OptimizationProps> = ({ style = {}, optimize = () => {} }
       style={style}
       onClick={optimize}
     >
-      {formatMessage({ id: 'Optimization' })}
+      {formatMessage({ id: "Optimization" })}
     </Button>
   );
 };

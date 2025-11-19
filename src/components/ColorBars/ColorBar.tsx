@@ -9,7 +9,7 @@ import { invertGrayscale, colorSimulation, colorToGray, colorToHex } from '@antv
 import { copyToClipboard } from '../../util';
 import type { ColorValue, Color } from '@antv/color-schema';
 import type { SimulationType } from '@antv/smart-color';
-import styles from './index.less';
+import styles from "./index.module.less";
 
 export type ColorBarSizeType = 'small' | 'large';
 

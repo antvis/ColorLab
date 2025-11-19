@@ -31,9 +31,9 @@ export interface ColorSchemeInfo {
   config: PaletteConfig[];
 }
 
-export type ConfigItmeId = 'count' | 'color' | 'tendency';
+export type ConfigItemId = 'count' | 'color' | 'tendency';
 interface ConfigItem {
-  id: ConfigItmeId;
+  id: ConfigItemId;
   name: string;
 }
 

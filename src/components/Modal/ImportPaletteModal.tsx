@@ -1,22 +1,23 @@
-import type { FC, ReactNode, CSSProperties } from 'react';
-import React, { useState, useEffect } from 'react';
-import { useIntl } from 'umi';
-import { Tabs, Input, Upload, Modal, message } from 'antd';
-import { PictureFilled } from '@ant-design/icons';
-import { getPaletteFromString } from '@antv/smart-color';
-import classNames from 'classnames';
-import Ajv from 'ajv';
-import { JSONIcon } from '@/components/icons';
-import PaletteByImage from '@/components/PaletteByImage';
-import Swatch from '../Swatch';
-import type { ColorSchema, Palette } from '@antv/color-schema';
-import styles from './index.less';
+import type { FC, ReactNode, CSSProperties } from "react";
+import { useState, useEffect } from "react";
+import { useIntl } from "react-intl";
+import { Tabs, Input, Upload, Modal, message } from "antd";
+import { PictureFilled } from "@ant-design/icons";
+import { getPaletteFromString } from "@antv/smart-color";
+import classNames from "classnames";
+import Ajv from "ajv";
+import { JSONIcon } from "@/components/icons";
+import PaletteByImage from "@/components/PaletteByImage";
+import Swatch from "../Swatch";
+import type { ColorSchema, Palette } from "@antv/color-schema";
+import styles from "./index.module.less";
 
 const { TabPane } = Tabs;
 const { Dragger } = Upload;
 const { TextArea } = Input;
 const ajv = new Ajv();
-const COLOR_SCHEMA_URL = 'https://unpkg.com/@antv/color-schema@0.2.2/build/color-schema.json';
+const COLOR_SCHEMA_URL =
+  "https://unpkg.com/@antv/color-schema@0.2.2/build/color-schema.json";
 
 const getColorSchema = async () => {
   try {
@@ -38,16 +39,16 @@ const ImportPaletteModalWrapper = (props: {
   const { formatMessage } = useIntl();
   return (
     <Modal
-      title={formatMessage({ id: 'Import Palette' })}
+      title={formatMessage({ id: "Import Palette" })}
       visible={props.visible}
-      okText={formatMessage({ id: 'OK' })}
+      okText={formatMessage({ id: "OK" })}
       onOk={props.onOk}
-      cancelText={formatMessage({ id: 'Cancel' })}
+      cancelText={formatMessage({ id: "Cancel" })}
       onCancel={props.onCancel}
       className={styles.modal}
       bodyStyle={{
         paddingTop: 0,
-        paddingBottom: '15px',
+        paddingBottom: "15px",
         ...props.style,
       }}
       centered
@@ -57,7 +58,7 @@ const ImportPaletteModalWrapper = (props: {
   );
 };
 
-type ImportType = 'string' | 'json';
+type ImportType = "string" | "json";
 let validate: Function;
 const ImportPaletteModalByCode = ({
   visible = false,
@@ -72,7 +73,7 @@ const ImportPaletteModalByCode = ({
   const [colorString, setColorString] = useState<string>();
   const [jsonObject, setJsonObject] = useState<ColorSchema>();
   const [uploading, setUploading] = useState<boolean>(false);
-  const [activeKey, setActiveKey] = useState<ImportType>('string');
+  const [activeKey, setActiveKey] = useState<ImportType>("string");
 
   const initValidate = async () => {
     if (!validate) {
@@ -95,7 +96,9 @@ const ImportPaletteModalByCode = ({
       if (validate(json)) {
         setJsonObject(json as ColorSchema);
       } else {
-        message.error(formatMessage({ id: 'Uploaded files cannot be parsed.' }));
+        message.error(
+          formatMessage({ id: "Uploaded files cannot be parsed." })
+        );
       }
       setUploading(false);
     };
@@ -110,11 +113,11 @@ const ImportPaletteModalByCode = ({
     <ImportPaletteModalWrapper
       visible={visible}
       onOk={() => {
-        if (activeKey === 'string') {
+        if (activeKey === "string") {
           if (colorString) {
             onOk(getPaletteFromString(colorString));
           }
-        } else if (activeKey === 'json') {
+        } else if (activeKey === "json") {
           if (jsonObject) {
             onOk(jsonObject.palettes);
           }
@@ -128,8 +131,11 @@ const ImportPaletteModalByCode = ({
         setJsonObject(undefined);
       }}
     >
-      <Tabs defaultActiveKey="string" onChange={(key) => setActiveKey(key as ImportType)}>
-        <TabPane tab={formatMessage({ id: 'By String' })} key="string">
+      <Tabs
+        defaultActiveKey="string"
+        onChange={(key) => setActiveKey(key as ImportType)}
+      >
+        <TabPane tab={formatMessage({ id: "By String" })} key="string">
           <div className={styles.sourceContainer}>
             <TextArea
               className={styles.sourceContainerInput}
@@ -138,13 +144,22 @@ const ImportPaletteModalByCode = ({
               onChange={inputColorString}
               value={colorString}
             />
-            {colorString && <Swatch palette={getPaletteFromString(colorString)} toolbar={false} />}
+            {colorString && (
+              <Swatch
+                palette={getPaletteFromString(colorString)}
+                toolbar={false}
+              />
+            )}
           </div>
         </TabPane>
-        <TabPane tab={formatMessage({ id: 'By File' })} key="json">
+        <TabPane tab={formatMessage({ id: "By File" })} key="json">
           {jsonObject ? (
             jsonObject.palettes.map((palette) => (
-              <Swatch palette={palette} key={palette.id || palette.name} toolbar={false} />
+              <Swatch
+                palette={palette}
+                key={palette.id || palette.name}
+                toolbar={false}
+              />
             ))
           ) : (
             <>
@@ -153,22 +168,27 @@ const ImportPaletteModalByCode = ({
                 customRequest={uploadJson}
                 beforeUpload={() => setUploading(true)}
                 disabled={uploading}
-                className={classNames(styles.sourceContainer, styles.localContainer)}
-                accept={'.colorlab'}
+                className={classNames(
+                  styles.sourceContainer,
+                  styles.localContainer
+                )}
+                accept={".colorlab"}
               >
                 <p className={styles.localLogo}>
                   <JSONIcon />
                 </p>
-                <p className={styles.localText}>{formatMessage({ id: 'Browse or drag .colorlab files' })}</p>
+                <p className={styles.localText}>
+                  {formatMessage({ id: "Browse or drag .colorlab files" })}
+                </p>
               </Dragger>
-              <div style={{ marginTop: '3px' }}>
+              <div style={{ marginTop: "3px" }}>
                 <a
                   href="https://github.com/antvis/color-schema#readme"
                   target="_blank"
-                  style={{ float: 'right', fontSize: '12px' }}
+                  style={{ float: "right", fontSize: "12px" }}
                   rel="noreferrer"
                 >
-                  {formatMessage({ id: 'Learn about Color Schema(.colorlab)' })}
+                  {formatMessage({ id: "Learn about Color Schema(.colorlab)" })}
                 </a>
               </div>
             </>
@@ -228,32 +248,42 @@ const ImportPaletteModalByImage = ({
           setImage(undefined);
         }}
       >
-        <TabPane tab={formatMessage({ id: 'Native Upload' })} key="local">
+        <TabPane tab={formatMessage({ id: "Native Upload" })} key="local">
           {image ? (
             <PaletteByImage image={image} save={save}></PaletteByImage>
           ) : (
             <Dragger
               showUploadList={false}
               customRequest={uploadImage}
-              className={classNames(styles.sourceContainer, styles.localContainer)}
-              accept={'.jpg, .jpeg, .png, .svg'}
+              className={classNames(
+                styles.sourceContainer,
+                styles.localContainer
+              )}
+              accept={".jpg, .jpeg, .png, .svg"}
             >
               <p className={styles.localLogo}>
                 <PictureFilled />
               </p>
-              <p className={styles.localText}>{formatMessage({ id: 'Browse or drag images' })}</p>
+              <p className={styles.localText}>
+                {formatMessage({ id: "Browse or drag images" })}
+              </p>
             </Dragger>
           )}
         </TabPane>
-        <TabPane tab={formatMessage({ id: 'By URL' })} key="url">
+        <TabPane tab={formatMessage({ id: "By URL" })} key="url">
           {image ? (
             <PaletteByImage image={image} save={save} />
           ) : (
             <div className={styles.sourceContainer}>
-              <p className={styles.sourceContainerText}>{formatMessage({ id: 'Image URL' })}:</p>
+              <p className={styles.sourceContainerText}>
+                {formatMessage({ id: "Image URL" })}:
+              </p>
               <Input
                 placeholder="http://"
-                className={classNames(styles.sourceContainerInput, styles.urlInput)}
+                className={classNames(
+                  styles.sourceContainerInput,
+                  styles.urlInput
+                )}
                 onPressEnter={inputImage}
               />
             </div>
@@ -264,7 +294,7 @@ const ImportPaletteModalByImage = ({
   );
 };
 
-type ImportPaletteType = 'code' | 'image';
+type ImportPaletteType = "code" | "image";
 interface ImportPaletteModalProps {
   type: ImportPaletteType;
   visible?: boolean;
@@ -276,9 +306,9 @@ const ImportPaletteModal: FC<ImportPaletteModalProps> = (props) => {
   const { type } = props;
 
   switch (type) {
-    case 'code':
+    case "code":
       return <ImportPaletteModalByCode {...props} />;
-    case 'image':
+    case "image":
       return <ImportPaletteModalByImage {...props} />;
     default:
       return <></>;

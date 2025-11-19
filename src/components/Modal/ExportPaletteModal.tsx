@@ -1,13 +1,16 @@
-import type { FC } from 'react';
-import React, { useState } from 'react';
-import { useIntl } from 'umi';
-import { Modal, Row, Col, Button } from 'antd';
-import { LeftOutlined } from '@ant-design/icons';
-import { copyToClipboard } from '@/util';
-import { EXPORT_PALETTE_TYPES, EXPORT_PALETTE_TYPE_INFOS } from './exportPaletteTypeInfos';
-import type { Palette } from '@antv/color-schema';
-import type { ExportPaletteType } from './exportPaletteTypeInfos';
-import styles from './index.less';
+import type { FC } from "react";
+import React, { useState } from "react";
+import { useIntl } from "react-intl";
+import { Modal, Row, Col, Button } from "antd";
+import { LeftOutlined } from "@ant-design/icons";
+import { copyToClipboard } from "@/util";
+import {
+  EXPORT_PALETTE_TYPES,
+  EXPORT_PALETTE_TYPE_INFOS,
+} from "./exportPaletteTypeInfos";
+import type { Palette } from "@antv/color-schema";
+import type { ExportPaletteType } from "./exportPaletteTypeInfos";
+import styles from "./index.module.less";
 
 interface ExportPaletteModalProps {
   palette: Palette;
@@ -18,22 +21,30 @@ interface ExportPaletteModalProps {
 const ExportPaletteModal: FC<ExportPaletteModalProps> = (props) => {
   const { formatMessage } = useIntl();
   const { palette } = props;
-  const [type, setType] = useState<ExportPaletteType | 'index'>('index');
-  const isIndex = type === 'index';
+  const [type, setType] = useState<ExportPaletteType | "index">("index");
+  const isIndex = type === "index";
 
   const onCancel = () => {
     if (props.onCancel) {
       props.onCancel();
     }
-    setType('index');
+    setType("index");
   };
   let onCopy = () => {};
   let onDownload = () => {};
 
   const header = (exportType: ExportPaletteType) => (
     <div className={styles.header}>
-      <Button type="link" className={styles.headerButton} icon={<LeftOutlined />} onClick={() => setType('index')}>
-        {formatMessage({ id: 'ExportPaletteType' }, { type: exportType.toUpperCase() })}
+      <Button
+        type="link"
+        className={styles.headerButton}
+        icon={<LeftOutlined />}
+        onClick={() => setType("index")}
+      >
+        {formatMessage(
+          { id: "ExportPaletteType" },
+          { type: exportType.toUpperCase() }
+        )}
       </Button>
     </div>
   );
@@ -56,7 +67,9 @@ const ExportPaletteModal: FC<ExportPaletteModalProps> = (props) => {
               icon={EXPORT_PALETTE_TYPE_INFOS[exportType].icon}
               onClick={() => setType(exportType)}
             ></Button>
-            <div className={styles.exportTypeText}>{exportType.toUpperCase()}</div>
+            <div className={styles.exportTypeText}>
+              {exportType.toUpperCase()}
+            </div>
           </Col>
         ))}
       </Row>
@@ -65,22 +78,22 @@ const ExportPaletteModal: FC<ExportPaletteModalProps> = (props) => {
 
   const footer = (
     <>
-      <Button onClick={onCopy}>{formatMessage({ id: 'Copy' })}</Button>
+      <Button onClick={onCopy}>{formatMessage({ id: "Copy" })}</Button>
       <Button type="primary" onClick={onDownload}>
-        {formatMessage({ id: 'Download' })}
+        {formatMessage({ id: "Download" })}
       </Button>
     </>
   );
 
   return (
     <Modal
-      title={formatMessage({ id: 'ExportPalette' })}
+      title={formatMessage({ id: "ExportPalette" })}
       visible={props.visible}
       onCancel={onCancel}
       className={styles.modal}
       bodyStyle={{
-        paddingTop: isIndex ? '30px' : '10px',
-        paddingBottom: isIndex ? '30px' : '10px',
+        paddingTop: isIndex ? "30px" : "10px",
+        paddingBottom: isIndex ? "30px" : "10px",
       }}
       footer={isIndex ? null : footer}
       centered

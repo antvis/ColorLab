@@ -1,19 +1,29 @@
-import React from 'react';
-import { useModel } from 'umi';
-import { isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
-import { paletteOptimization } from '@antv/smart-color';
-import ColorBars from '../components/ColorBars';
-import Optimization from '../components/Optimization';
+import { isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
+import { paletteOptimization } from "@antv/smart-color";
+import ColorBars from "../components/ColorBars";
+import { useSimulationTypeContext } from "@/contexts/simulationType";
+import Optimization from "../components/Optimization";
+import { useCurrentPaletteContext } from "@/contexts/currentPalette";
 
-// pure model
 const Pure = () => {
-  const { currentPalette, locked, addColor, removeColor, updateColor, reorderColor, lockColor, setCurrentPalette } =
-    useModel('currentPalette');
-  const { simulationType } = useModel('simulationType');
-  const isNormal = simulationType === 'normal';
+  const {
+    currentPalette,
+    locked,
+    addColor,
+    removeColor,
+    updateColor,
+    reorderColor,
+    lockColor,
+    setCurrentPalette,
+  } = useCurrentPaletteContext();
+  const { simulationType } = useSimulationTypeContext();
+  const isNormal = simulationType === "normal";
 
-  const height = isNormal ? '100%' : 'calc(100% - 70px)';
-  if (!isContinuousPalette(currentPalette) && !isMatrixPalette(currentPalette)) {
+  const height = isNormal ? "100%" : "calc(100% - 70px)";
+  if (
+    !isContinuousPalette(currentPalette) &&
+    !isMatrixPalette(currentPalette)
+  ) {
     return (
       <>
         <ColorBars
@@ -29,7 +39,7 @@ const Pure = () => {
         />
         {!isNormal && (
           <Optimization
-            style={{ marginLeft: '20px' }}
+            style={{ marginLeft: "20px" }}
             optimize={() =>
               setCurrentPalette(
                 paletteOptimization(currentPalette, {
