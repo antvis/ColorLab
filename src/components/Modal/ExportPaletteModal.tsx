@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useIntl } from "react-intl";
 import { Modal, Row, Col, Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
-import { copyToClipboard } from "@/util";
+import { copyToClipboard } from "@/utils";
 import {
   EXPORT_PALETTE_TYPES,
   EXPORT_PALETTE_TYPE_INFOS,
