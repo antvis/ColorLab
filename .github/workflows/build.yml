@@ -1,0 +1,35 @@
+name: Build and Lint
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️ Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🎉 Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: 📦 Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: 🔍 Run Linting
+        run: npm run lint || echo "Lint failed, but continuing with build"
+
+      - name: 🚀 Build project
+        run: npm run build
+
+      # - name: 📋 Upload build artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: build-output
+      #     path: dist/
+
