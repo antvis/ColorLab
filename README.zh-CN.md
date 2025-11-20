@@ -9,7 +9,7 @@
 [ColorLab](https://colorlab.antv.vision) 是一个专业的色彩实验室，为设计师、开发者和数据分析师提供多样化的色彩分析和生产工具。
 
 [![Build Status](https://github.com/antvis/ColorLab/actions/workflows/build.yml/badge.svg)](https://github.com/antvis/ColorLab/actions/workflows/build.yml)
-[![npm License](https://img.shields.io/npm/l/@antv/colorlab.svg)](https://www.npmjs.com/package/@antv/colorlab)
+[![npm License](https://img.shields.io/npm/l/@antv/g2.svg)](https://www.npmjs.com/package/@antv/colorlab)
 
 ![colorlab](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*t4OXS7VQxN8AAAAAX2AAAAgAemJ7AQ/fmt.webp)
 
