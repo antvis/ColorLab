@@ -220,7 +220,7 @@ const Layouts = () => {
           />
         </div>
       </div>
-      <Layout className={styles.content}>
+      <Layout className={styles.contentWrapper}>
         <Sider
           theme="light"
           width={320}
