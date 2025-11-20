@@ -23,6 +23,7 @@ import { useMyAssetsContext } from "@/contexts/myAssets";
 import styles from "./index.module.less";
 
 const { Panel } = Collapse;
+const defaultColorNumberRange: [number, number] = [4, 12];
 
 const Assets = (props: { collapsed: boolean }) => {
   const { formatMessage } = useIntl();
@@ -34,8 +35,7 @@ const Assets = (props: { collapsed: boolean }) => {
   const [isImportingByCode, setIsImportingByCode] = useState<boolean>(false);
   const [isImportingByImage, setIsImportingByImage] = useState<boolean>(false);
   const [isFiltering, setIsFiltering] = useState<boolean>(false);
-  const defaultColorNumberRange: [number, number] = [4, 12];
-  const [colorNumberRange, setColorNumberRange] = useState<[number, number]>(
+  const [colorNumberRange, setColorNumberRange] = useState(
     defaultColorNumberRange
   );
   const [colorScheme, setColorScheme] = useState<ColorSchemeType>();
@@ -111,7 +111,7 @@ const Assets = (props: { collapsed: boolean }) => {
           max={colorNumberRange[1]}
           step="1"
           onChange={(value) => {
-            setColorNumberRange([value, colorNumberRange[1]]);
+            setColorNumberRange([value as number, colorNumberRange[1]]);
           }}
         />
         <span className={styles.colorNumberDivider}></span>
@@ -125,7 +125,7 @@ const Assets = (props: { collapsed: boolean }) => {
           max={30}
           step="1"
           onChange={(value) => {
-            setColorNumberRange([colorNumberRange[0], value]);
+            setColorNumberRange([colorNumberRange[0], value as number]);
           }}
         />
       </div>

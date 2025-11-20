@@ -4,7 +4,12 @@ import { colorToHex, hexToColor } from '@antv/smart-color';
 import type { Color } from '@antv/color-schema';
 import styles from './index.module.less';
 
-const ColorSelectBox = ({ color, onChange }: { color: Color; onChange: (value: Color) => void }) => {
+interface ColorSelectBoxProps {
+  color: Color;
+  onChange: (value: Color) => void;
+}
+
+const ColorSelectBox: React.FC<ColorSelectBoxProps> = ({ color, onChange }) => {
   const [showPicker, setShowPicker] = useState<boolean>(false);
 
   const closeColorPicker = () => {

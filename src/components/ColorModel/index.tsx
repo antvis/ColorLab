@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Plotly from 'plotly.js-dist';
 import chroma from 'chroma-js';
 import { ColorModelRange } from '@antv/color-schema';
@@ -172,7 +172,7 @@ function draw1dPlot(containerID: string, colors: string[], colorModel: ColorMode
   Plotly.newPlot(containerID, [trace], layout);
 }
 
-const ColorModelView: FC<ColorModelProps> = ({ palette, theme }) => {
+const ColorModelView: React.FC<ColorModelProps> = ({ palette, theme }) => {
   const [threeDimension, setThreeDimension] = useState<ColorModel>('hsv');
   const twoDimensions = generateTwoDimensions(threeDimension);
   const oneDimensions = threeDimension.split('');

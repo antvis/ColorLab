@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import React, { useState, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { Slider, InputNumber, Image } from "antd";
@@ -12,7 +11,7 @@ interface PaletteByImageProps {
   save?: (palette: Palette) => void;
 }
 
-const PaletteByImage: FC<PaletteByImageProps> = ({ image, save }) => {
+const PaletteByImage: React.FC<PaletteByImageProps> = ({ image, save }) => {
   const { formatMessage } = useIntl();
   const [colorCount, setColorCount] = useState<number>(6);
   const [isError, setIsError] = useState<boolean>(false);
