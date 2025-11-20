@@ -220,7 +220,7 @@ const Layouts = () => {
           />
         </div>
       </div>
-      <Layout>
+      <Layout className={styles.content}>
         <Sider
           theme="light"
           width={320}
@@ -247,7 +247,7 @@ const Layouts = () => {
 
         <PaletteConfigSider colorSchemeInfo={colorSchemeInfo} />
 
-        <Layout>
+        <Layout className={styles.panelContainer}>
           <div className={styles.subHeader}>
             {isProtest ? (
               protestMenu
