@@ -1,13 +1,15 @@
+<img src="https://gw.alipayobjects.com/zos/antfincdn/R8sN%24GNdh6/language.svg" width="18"> English | [简体中文](/README.zh-CN.md)
+
 <h1 align="center">
-<b>ColorLab: Professional Color Analysis</b>
+  <b>ColorLab: Professional Color Analysis</b>
 </h1>
 
 <div align="center">
 
 [ColorLab](https://colorlab.antv.vision) is a professional color lab, which provides a variety of color analysis and production tools for designers, developers and data analysts.
 
-[![Build Status](https://github.com/antvis/G2/actions/workflows/build.yml/badge.svg)](https://github.com/antvis/G2/actions/workflows/build.yml)
-[![npm License](https://img.shields.io/npm/l/@antv/g2.svg)](https://www.npmjs.com/package/@antv/g2)
+[![Build Status](https://github.com/antvis/ColorLab/actions/workflows/build.yml/badge.svg)](https://github.com/antvis/ColorLab/actions/workflows/build.yml)
+[![npm License](https://img.shields.io/npm/l/@antv/colorlab.svg)](https://www.npmjs.com/package/@antv/colorlab)
 
 ![colorlab](https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*t4OXS7VQxN8AAAAAX2AAAAgAemJ7AQ/fmt.webp)
 
@@ -22,25 +24,21 @@ Color is a critical strategic asset in product front-end design, directly influe
 
 `ColorLab` is designed to help designers and developers create beautiful and effective color palette. which is a part of [AntV](https://github.com/antvis) project family.
 
-
 ## ✨ Features
 
-- __Professional color analysis__: provides color preview, professional analysis test different function modes, give different user different levels of functions. Including professional analysis test includes distance matrix, color model etc.innovative color analysis ability.
-- __Color Optimize__: optimize for color space distance, color blind test results, provide one-click optimization ability, optimize your color through professional tools. 
-- __Export and import__: Provide one-click export and one-click import function, making it easy for users to quickly generate and import colors. Also supports analyzing theme palettes from images and optimizing exports.
-
+- **Professional color analysis**: provides color preview, professional analysis test different function modes, give different user different levels of functions. Including professional analysis test includes distance matrix, color model etc.innovative color analysis ability.
+- **Color Optimize**: optimize for color space distance, color blind test results, provide one-click optimization ability, optimize your color through professional tools.
+- **Export and import**: Provide one-click export and one-click import function, making it easy for users to quickly generate and import colors. Also supports analyzing theme palettes from images and optimizing exports.
 
 There are more color tools, welcome to [explore](https://colorlab.antv.vision).
-
 
 ## 📮 Contributing
 
 This project exists thanks to all the people who contribute, and you are welcome to contribute to `ColorLab`, to make it better. And thank you to all our backers! 🙏
 
-
 <a href="https://openomy.app/github/antvis/ColorLab" target="_blank" style="display: block; width: 100%;" align="center">
   <img src="https://openomy.app/svg?repo=antvis/ColorLab&chart=bubble&latestMonth=12" target="_blank" alt="Contribution Leaderboard" style="display: block; width: 100%;" />
- </a>
+</a>
 
 Use the following commands to start the website locally:
 
@@ -59,7 +57,6 @@ $ npm run dev
 ```
 
 Then you can run the project locally at [http://localhost:8000](http://localhost:8000).
-
 
 ## 📄 License
 
