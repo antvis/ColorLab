@@ -22,6 +22,7 @@
     "@antv/color-schema": "^0.2.3",
     "@antv/g2plot": "2.3.21",
     "@antv/smart-color": "^0.2.1",
+    "ahooks": "^3.9.6",
     "ajv": "8.6.1",
     "antd": "4.6.6",
     "chroma-js": "2.1.2",
