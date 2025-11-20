@@ -10,8 +10,6 @@ export default {
   Export: 'Export',
   Instruction: 'Instruction',
   'Color Knowledge': 'Color Knowledge',
-  // pages/preview
-  'Export Kit': 'Export Kit',
   // pages/protest
   'Distance Matrix': 'Distance Matrix',
   'Color Model': 'Color Model',
