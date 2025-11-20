@@ -1,4 +1,3 @@
-import type { FC } from "react";
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
 import { Modal, Row, Col, Button } from "antd";
@@ -18,7 +17,7 @@ interface ExportPaletteModalProps {
   onCancel?: () => void;
 }
 
-const ExportPaletteModal: FC<ExportPaletteModalProps> = (props) => {
+const ExportPaletteModal: React.FC<ExportPaletteModalProps> = (props) => {
   const { formatMessage } = useIntl();
   const { palette } = props;
   const [type, setType] = useState<ExportPaletteType | "index">("index");

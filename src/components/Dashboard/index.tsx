@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import React, { useEffect, useRef } from 'react';
 import { Col, Row } from 'antd';
 import * as G2Plot from '@antv/g2plot';
@@ -15,7 +14,7 @@ interface DashboardProps {
   theme?: string;
 }
 
-const Dashboard: FC<DashboardProps> = ({ dashborad, palette, simulationType = 'normal', theme = 'default' }) => {
+const Dashboard: React.FC<DashboardProps> = ({ dashborad, palette, simulationType = 'normal', theme = 'default' }) => {
   const { current: plots } = useRef(new Map());
 
   const chartContainerId = (id: string) => {

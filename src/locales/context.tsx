@@ -4,6 +4,7 @@ import { useBrowserLanguage } from "@/hooks/useBrowserLanguage";
 import { useLocalStorageState } from "ahooks";
 
 type Locale = "zh-CN" | "en-US";
+type SetState<S> = S | ((prevState?: S) => S);
 
 interface LocaleContextType {
   locale: Locale;
@@ -12,7 +13,7 @@ interface LocaleContextType {
 
 const LocaleContext = createContext<LocaleContextType>({
   locale: "zh-CN" as Locale,
-  setLocale: noop,
+  setLocale: noop as (value: SetState<Locale>) => void,
 });
 
 const LocaleProvider = (props: {

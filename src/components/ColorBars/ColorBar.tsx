@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import React, { useState, useEffect } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { Tooltip, Button } from 'antd';
@@ -25,7 +24,7 @@ interface ColorBarProps {
   size?: ColorBarSizeType;
 }
 
-export const ColorBar: FC<ColorBarProps> = ({
+export const ColorBar: React.FC<ColorBarProps> = ({
   color,
   index,
   locked = false,
@@ -106,7 +105,7 @@ export const ColorBar: FC<ColorBarProps> = ({
     />
   );
 
-  const getItemStyle = (isDragging: any, draggableStyle: any) => ({
+  const getItemStyle = (_isDragging: any, draggableStyle: any) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: 'none',
     width: '100%',
@@ -190,7 +189,7 @@ export const ColorBar: FC<ColorBarProps> = ({
                     })}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    {new Array(20).fill(0).map((d, i) => (
+                    {new Array(20).fill(0).map((_d, i) => (
                       <div
                         key={i}
                         className={styles.gradientBlock}

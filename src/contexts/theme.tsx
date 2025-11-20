@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect } from "react";
 import { noop } from "lodash";
 import { useLocalStorageState } from "ahooks";
 
+type SetState<S> = S | ((prevState?: S) => S);
+
 enum Theme {
   /** 明亮主题 */
   Light = "light",
@@ -13,7 +15,7 @@ const DEFAULT_THEME = Theme.Light as `${Theme}`;
 
 const ThemeContext = createContext({
   theme: DEFAULT_THEME,
-  setTheme: noop as React.Dispatch<React.SetStateAction<`${Theme}`>>,
+  setTheme: noop as (value: SetState<"light" | "dark">) => void,
 });
 
 const ThemeProvider: React.FC<{ children?: React.ReactNode }> = ({
