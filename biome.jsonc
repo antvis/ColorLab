@@ -1,0 +1,57 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.6/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["**", "!!**/dist", "!!**/node_modules"] // 排除构建与依赖目录
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space", // 缩进用空格
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "linter": {
+    // 是否启用代码 Lint 检查
+    "enabled": true,
+    "rules": {
+      // 启用推荐规则集（Biome 提供的默认最佳实践规则）
+      "recommended": true,
+      // 代码正确性相关的规则
+      "correctness": {
+        "noUnusedVariables": "error", // 禁止声明未使用的变量（避免无效代码）
+        "useHookAtTopLevel": "error" // React Hook 必须在函数组件或自定义 Hook 顶层调用（保持一致性和避免运行时错误）
+      },
+      // 可疑代码用法的检查（可能是错误，也可能只是警告）
+      "suspicious": {
+        "noExplicitAny": "warn", // 避免在 TypeScript 中使用显式 `any` 类型（降低类型安全）
+        "noConsole": "warn" // 不建议使用 console.log/console.error 等（避免生产环境遗留调试）
+      },
+      "style": {
+        "noNamespace": "error", // 禁止使用命名空间（namespace），建议用模块化方式代替
+        "useImportType": "error" // 在 TypeScript 类型导入时使用 `import type`（可优化编译与代码结构）
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single" // 代码中字符串的引号风格使用单引号
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
+}
