@@ -79,9 +79,20 @@
       }
     }
   }
+
+  .contentWrapper {
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .panelContainer {
+      padding: 0 16px;
+      overflow: hidden;
+    }
+  }
+
   .subHeader {
     height: 45px;
-    padding: 7px 16px;
+    padding: 7px 8px;
     background-color: var(--main-bg-color);
 
     .dropdownButton {
@@ -168,6 +179,7 @@
     border-color: var(--second-border-color);
   }
 }
+
 :global(.ant-select:not(.ant-select-customize-input)) {
   color: var(--main-text-color);
   :global(.ant-select-selector) {
@@ -177,6 +189,7 @@
     color: var(--main-text-color);
   }
 }
+
 :global(.ant-radio-button-wrapper) {
   background: none;
   &:global:not(.ant-radio-button-wrapper-checked) {
@@ -198,7 +211,9 @@
 
 :global(.ant-select-dropdown) {
   background-color: var(--main-bg-color);
-  :global(.ant-select-item-option-selected:not(.ant-select-item-option-disabled)) {
+  :global(
+      .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
+    ) {
     color: var(--main-text-color);
     background-color: var(--hover-bg-color);
   }

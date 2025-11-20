@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { noop } from "lodash";
 import { useBrowserLanguage } from "@/hooks/useBrowserLanguage";
+import { useLocalStorageState } from "ahooks";
 
 type Locale = "zh-CN" | "en-US";
 
@@ -20,7 +21,9 @@ const LocaleProvider = (props: {
 }) => {
   const { children, defaultLocale } = props;
 
-  const [locale, setLocale] = useState<Locale>(defaultLocale);
+  const [locale, setLocale] = useLocalStorageState<Locale>("app-locale", {
+    defaultValue: defaultLocale,
+  });
 
   return (
     <LocaleContext.Provider

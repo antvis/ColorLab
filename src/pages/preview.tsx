@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { useIntl } from "react-intl";
-import { Button, Select } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
+import { Select } from "antd";
 import classNames from "classnames";
 import { isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
 import { paletteOptimization } from "@antv/smart-color";
@@ -17,7 +15,6 @@ import styles from "./index.module.less";
 const { Option } = Select;
 
 const Preview = () => {
-  const { formatMessage } = useIntl();
   const {
     currentPalette,
     locked,
@@ -94,9 +91,6 @@ const Preview = () => {
                 </Option>
               ))}
             </Select>
-            <Button icon={<DownloadOutlined />} className={styles.exportKit}>
-              {formatMessage({ id: "Export Kit" })}
-            </Button>
           </div>
         </div>
         <div

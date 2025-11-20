@@ -10,8 +10,6 @@ export default {
   Export: '导出',
   Instruction: '使用说明',
   'Color Knowledge': '色彩知识',
-  // pages/preview
-  'Export Kit': '导出Kit',
   // pages/protest
   'Distance Matrix': '距离矩阵',
   'Color Model': '色彩模型',

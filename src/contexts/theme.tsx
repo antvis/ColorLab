@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { noop } from "lodash";
+import { useLocalStorageState } from "ahooks";
 
 enum Theme {
   /** 明亮主题 */
@@ -18,7 +19,9 @@ const ThemeContext = createContext({
 const ThemeProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState(DEFAULT_THEME);
+  const [theme, setTheme] = useLocalStorageState("app-theme", {
+    defaultValue: DEFAULT_THEME,
+  });
 
   useEffect(() => {
     if (theme === Theme.Dark) {
