@@ -1,4 +1,4 @@
-name: Build and Lint
+name: build
 
 on:
   push:
@@ -22,14 +22,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: 🔍 Run Linting
-        run: npm run lint || echo "Lint failed, but continuing with build"
+        run: npm run lint
 
       - name: 🚀 Build project
         run: npm run build
-
-      # - name: 📋 Upload build artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: build-output
-      #     path: dist/
-
