@@ -1,11 +1,10 @@
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { colorToHex, isContinuousPalette, isMatrixPalette } from '@antv/color-schema';
-import { SvgIcon, JSONIcon, ArrIcon } from '@/components/icons';
-import type { Palette } from '@antv/color-schema';
-import styles from './index.module.less';
+import ReactDOMServer from "react-dom/server";
+import { colorToHex, isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
+import { SvgIcon, JSONIcon, ArrIcon } from "@/components/icons";
+import type { Palette } from "@antv/color-schema";
+import styles from "./index.module.less";
 
-export const EXPORT_PALETTE_TYPES = ['svg', 'array', 'colorlab'];
+export const EXPORT_PALETTE_TYPES = ["svg", "array", "colorlab"];
 export type ExportPaletteType = (typeof EXPORT_PALETTE_TYPES)[number];
 
 const paletteToSvg = (palette: Palette, width = 350, height = 100) => {
@@ -17,7 +16,13 @@ const paletteToSvg = (palette: Palette, width = 350, height = 100) => {
         palette.colors.map((color, i) => {
           const hexValue = colorToHex(color);
           return (
-            <rect width={rectWidth} height={height} fill={hexValue} x={i * rectWidth} key={color.id || hexValue}></rect>
+            <rect
+              width={rectWidth}
+              height={height}
+              fill={hexValue}
+              x={i * rectWidth}
+              key={color.id || hexValue}
+            ></rect>
           );
         })}
     </svg>
@@ -31,11 +36,11 @@ const elementToString = (el: React.ReactElement): string => {
 const paletteToJSONString = (palette: Palette): string => {
   return JSON.stringify(
     {
-      brandName: 'colorLab',
+      brandName: "colorLab",
       palettes: [palette],
     },
     null,
-    2
+    2,
   );
 };
 
@@ -44,32 +49,32 @@ const paletteToArrayString = (palette: Palette): string => {
     const arr = palette.colors.map((color) => colorToHex(color));
     return JSON.stringify(arr);
   }
-  return '';
+  return "";
 };
 
 const downloadFile = (blob: Blob, fileName: string) => {
   const url = URL.createObjectURL(blob);
-  const downloadAnchorNode = document.createElement('a');
-  downloadAnchorNode.setAttribute('href', url);
-  downloadAnchorNode.setAttribute('download', fileName);
+  const downloadAnchorNode = document.createElement("a");
+  downloadAnchorNode.setAttribute("href", url);
+  downloadAnchorNode.setAttribute("download", fileName);
   document.body.appendChild(downloadAnchorNode); // required for firefox
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
 };
 
 type Download = (str: string, exportName?: string) => void;
-const downloadSVG: Download = (svgString, exportName = 'palette.svg') => {
-  const blob = new Blob([svgString], { type: 'image/svg+xml' });
+const downloadSVG: Download = (svgString, exportName = "palette.svg") => {
+  const blob = new Blob([svgString], { type: "image/svg+xml" });
   downloadFile(blob, exportName);
 };
 
-const downloadJSON: Download = (jsonString, exportName = 'palette.json') => {
-  const blob = new Blob([jsonString], { type: 'application/json' });
+const downloadJSON: Download = (jsonString, exportName = "palette.json") => {
+  const blob = new Blob([jsonString], { type: "application/json" });
   downloadFile(blob, exportName);
 };
 
-const downloadJS: Download = (jsString, exportName = 'palette.js') => {
-  const blob = new Blob([jsString], { type: 'text/javascript' });
+const downloadJS: Download = (jsString, exportName = "palette.js") => {
+  const blob = new Blob([jsString], { type: "text/javascript" });
   downloadFile(blob, exportName);
 };
 interface ExportPaletteTypeInfo {
@@ -116,6 +121,6 @@ export const EXPORT_PALETTE_TYPE_INFOS: Record<ExportPaletteType, ExportPaletteT
         str: code,
       };
     },
-    download: (str) => downloadJSON(str, 'palette.colorlab'),
+    download: (str) => downloadJSON(str, "palette.colorlab"),
   },
 };

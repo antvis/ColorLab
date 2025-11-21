@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useIntl } from "react-intl";
 import { Modal, Row, Col, Button } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import { copyToClipboard } from "@/utils";
-import {
-  EXPORT_PALETTE_TYPES,
-  EXPORT_PALETTE_TYPE_INFOS,
-} from "./exportPaletteTypeInfos";
+import { EXPORT_PALETTE_TYPES, EXPORT_PALETTE_TYPE_INFOS } from "./exportPaletteTypeInfos";
 import type { Palette } from "@antv/color-schema";
 import type { ExportPaletteType } from "./exportPaletteTypeInfos";
 import styles from "./index.module.less";
@@ -40,10 +37,7 @@ const ExportPaletteModal: React.FC<ExportPaletteModalProps> = (props) => {
         icon={<LeftOutlined />}
         onClick={() => setType("index")}
       >
-        {formatMessage(
-          { id: "ExportPaletteType" },
-          { type: exportType.toUpperCase() }
-        )}
+        {formatMessage({ id: "ExportPaletteType" }, { type: exportType.toUpperCase() })}
       </Button>
     </div>
   );
@@ -66,9 +60,7 @@ const ExportPaletteModal: React.FC<ExportPaletteModalProps> = (props) => {
               icon={EXPORT_PALETTE_TYPE_INFOS[exportType].icon}
               onClick={() => setType(exportType)}
             ></Button>
-            <div className={styles.exportTypeText}>
-              {exportType.toUpperCase()}
-            </div>
+            <div className={styles.exportTypeText}>{exportType.toUpperCase()}</div>
           </Col>
         ))}
       </Row>

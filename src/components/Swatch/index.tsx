@@ -1,16 +1,11 @@
-import type { FC } from "react";
-import React, { useState } from "react";
-import { useCurrentPaletteContext } from "@/contexts/currentPalette";
-import calssNames from "classnames";
-import {
-  colorToHex,
-  isContinuousPalette,
-  isMatrixPalette,
-} from "@antv/color-schema";
-import { Button } from "antd";
-import { DownloadOutlined, DeleteOutlined } from "@ant-design/icons";
-import ExportPaletteModal from "@/components/Modal/ExportPaletteModal";
+import { DeleteOutlined, DownloadOutlined } from "@ant-design/icons";
 import type { Color, Palette } from "@antv/color-schema";
+import { colorToHex, isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
+import { Button } from "antd";
+import classNames from "classnames";
+import { useState } from "react";
+import ExportPaletteModal from "@/components/Modal/ExportPaletteModal";
+import { useCurrentPaletteContext } from "@/contexts/currentPalette";
 import styles from "./index.module.less";
 
 interface SwatchProps {
@@ -25,7 +20,7 @@ interface ColorsProps {
   handleClick?: () => void;
 }
 
-const Colors: FC<ColorsProps> = ({
+const Colors: React.FC<ColorsProps> = ({
   colorStyle = {},
   colors = [],
   handleClick = () => {},
@@ -49,14 +44,14 @@ const Colors: FC<ColorsProps> = ({
   );
 };
 
-const Swatch: FC<SwatchProps> = ({ palette, handleDelete, toolbar = true }) => {
+const Swatch: React.FC<SwatchProps> = ({ palette, handleDelete, toolbar = true }) => {
   const { setCurrentPalette } = useCurrentPaletteContext();
   const [isExporting, setIsExporting] = useState<boolean>(false);
 
   return (
     <div className={styles.swatch}>
       <div
-        className={calssNames(styles.panel, {
+        className={classNames(styles.panel, {
           [styles.panelWithToolbal]: toolbar,
         })}
       >
@@ -74,17 +69,9 @@ const Swatch: FC<SwatchProps> = ({ palette, handleDelete, toolbar = true }) => {
         {toolbar && (
           <div className={styles.toolbars}>
             {handleDelete && (
-              <Button
-                icon={<DeleteOutlined />}
-                onClick={handleDelete}
-                type="text"
-              />
+              <Button icon={<DeleteOutlined />} onClick={handleDelete} type="text" />
             )}
-            <Button
-              icon={<DownloadOutlined />}
-              onClick={() => setIsExporting(true)}
-              type="text"
-            />
+            <Button icon={<DownloadOutlined />} onClick={() => setIsExporting(true)} type="text" />
             <ExportPaletteModal
               palette={palette}
               visible={isExporting}

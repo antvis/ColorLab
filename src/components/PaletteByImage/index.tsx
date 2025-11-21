@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useIntl } from "react-intl";
 import { Slider, InputNumber, Image } from "antd";
 import { getPaletteFromImage } from "@antv/smart-color";
@@ -11,14 +11,21 @@ interface PaletteByImageProps {
   save?: (palette: Palette) => void;
 }
 
-const PaletteByImage: React.FC<PaletteByImageProps> = ({ image, save }) => {
+const PaletteByImage: React.FC<PaletteByImageProps> = (props) => {
+  const { image, save } = props;
   const { formatMessage } = useIntl();
   const [colorCount, setColorCount] = useState<number>(6);
   const [isError, setIsError] = useState<boolean>(false);
   const [palette, setPalette] = useState<Palette>();
 
-  const onChange = (value: any) => {
-    setColorCount(typeof +value === "number" ? +value : 0);
+  const onChange = (value: number | string | null) => {
+    setColorCount(
+      typeof value === "number"
+        ? value
+        : typeof value === "string"
+        ? Number(value) || 0
+        : 0
+    );
   };
 
   useEffect(() => {
@@ -40,7 +47,7 @@ const PaletteByImage: React.FC<PaletteByImageProps> = ({ image, save }) => {
     if (save && palette) {
       save(palette);
     }
-  }, [save]);
+  }, [save, palette]);
 
   return (
     <>

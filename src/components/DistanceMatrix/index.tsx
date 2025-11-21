@@ -149,7 +149,7 @@ const MatrixCell: FC<{
         visibility: visibility ? "visible" : "hidden",
         background:
         visibility && value < threshold
-        // @ts-ignore
+        // @ts-expect-error
             ? colorScale(value).hex()
             : "var(--main-bg-color)",
         color: value < threshold ? "white" : "var(--forth-text-color)",

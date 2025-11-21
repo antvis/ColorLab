@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from 'react';
-import { Col, Row } from 'antd';
-import * as G2Plot from '@antv/g2plot';
-import { getHexColors, getSimulationColors } from '@/utils';
-import type { Palette } from '@antv/color-schema';
-import type { SimulationType } from '@antv/smart-color';
-import type { DashBoard } from '@/types/dashboard';
-import styles from './index.module.less';
+import type { Palette } from "@antv/color-schema";
+import * as G2Plot from "@antv/g2plot";
+import type { SimulationType } from "@antv/smart-color";
+import { useMemoizedFn } from "ahooks";
+import { Col, Row } from "antd";
+import { useEffect, useRef } from "react";
+import type { DashBoard } from "@/types/dashboard";
+import { getHexColors, getSimulationColors } from "@/utils";
+import styles from "./index.module.less";
 
 interface DashboardProps {
   dashborad?: DashBoard;
@@ -14,13 +15,19 @@ interface DashboardProps {
   theme?: string;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ dashborad, palette, simulationType = 'normal', theme = 'default' }) => {
+const Dashboard: React.FC<DashboardProps> = ({
+  dashborad,
+  palette,
+  simulationType = "normal",
+  theme = "default",
+}) => {
   const { current: plots } = useRef(new Map());
 
-  const chartContainerId = (id: string) => {
-    return `chartContainer-${id}`;
-  };
-  const color = simulationType === 'normal' ? getHexColors(palette) : getSimulationColors(palette, simulationType);
+  const chartContainerId = useMemoizedFn((id: string) => `chartContainer-${id}`);
+  const color =
+    simulationType === "normal"
+      ? getHexColors(palette)
+      : getSimulationColors(palette, simulationType);
 
   useEffect(() => {
     plots.clear();

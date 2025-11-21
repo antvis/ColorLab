@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { SketchPicker } from 'react-color';
-import { colorToHex, hexToColor } from '@antv/smart-color';
-import type { Color } from '@antv/color-schema';
-import styles from './index.module.less';
+import { useState } from "react";
+import { SketchPicker } from "react-color";
+import { colorToHex, hexToColor } from "@antv/smart-color";
+import type { Color } from "@antv/color-schema";
+import styles from "./index.module.less";
 
 interface ColorSelectBoxProps {
   color: Color;
@@ -25,7 +25,7 @@ const ColorSelectBox: React.FC<ColorSelectBoxProps> = ({ color, onChange }) => {
         onChangeComplete={(curNewColor) => {
           onChange(hexToColor(curNewColor.hex));
         }}
-        width={'260px'}
+        width="260px"
       />
     );
   };
@@ -45,7 +45,7 @@ const ColorSelectBox: React.FC<ColorSelectBoxProps> = ({ color, onChange }) => {
           </div>
         )}
       </div>
-      <span className={styles.colorName}>{hexColor.replace('#', '# ').toUpperCase()}</span>
+      <span className={styles.colorName}>{hexColor.replace("#", "# ").toUpperCase()}</span>
     </div>
   );
 };
