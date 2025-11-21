@@ -1,9 +1,8 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { noop } from "lodash";
-import { cloneDeep } from "lodash";
-import { v4 as uuidv4 } from "uuid";
 import type { ColorSchema, Palette } from "@antv/color-schema";
 import { isContinuousPalette, isMatrixPalette } from "@antv/color-schema";
+import { cloneDeep, noop } from "lodash";
+import { createContext, useContext, useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 let DEFAULT_COLOR_SCHEMA: ColorSchema = {
   brandName: "",
@@ -29,7 +28,7 @@ const MyAssetsProvider: React.FC<{
   const [myAssets, setMyAssets] = useState<ColorSchema>(DEFAULT_COLOR_SCHEMA);
 
   const savePalette = (palettes: Palette[] | Palette) => {
-    if (palettes instanceof Array) {
+    if (Array.isArray(palettes)) {
       const newAssets = cloneDeep(myAssets);
       for (let i = palettes.length - 1; i >= 0; i -= 1) {
         const palette = palettes[i];
@@ -95,6 +94,6 @@ export const withMyAssetsProvider =
     );
   };
 
-export const useMyAssetsContext= () => {
+export const useMyAssetsContext = () => {
   return useContext(MyAssetsContext);
 };

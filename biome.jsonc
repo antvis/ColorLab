@@ -12,33 +12,60 @@
     "enabled": true,
     "indentStyle": "space", // 缩进用空格
     "indentWidth": 2,
-    "lineWidth": 120
+    "lineWidth": 100
   },
   "linter": {
     // 是否启用代码 Lint 检查
     "enabled": true,
+    // ------------------------------------------------------------
+    // 存量项目代码规则特殊说明
+    // 一次性启用所有严格规则可能导致大量 lint 报错，增加改造成本。
+    // 因此这里采取“逐步收紧、循序渐进”的策略：
+    //   - 对影响较大的规则（如 noUnusedVariables、useHookAtTopLevel）先强制执行；
+    //   - 对引起大量警告但不影响运行的规则先暂时关闭（off）；
+    //   - 待项目代码逐步清理、迁移完毕后，可以逐项开启或上调为 warning/error。
+    // 换句话说，目前的配置是“兼容现状 + 为后续规范化铺路”的折衷方案。
+    // ------------------------------------------------------------
     "rules": {
       // 启用推荐规则集（Biome 提供的默认最佳实践规则）
       "recommended": true,
       // 代码正确性相关的规则
       "correctness": {
         "noUnusedVariables": "error", // 禁止声明未使用的变量（避免无效代码）
-        "useHookAtTopLevel": "error" // React Hook 必须在函数组件或自定义 Hook 顶层调用（保持一致性和避免运行时错误）
+        "useHookAtTopLevel": "error", // React Hook 必须在函数组件或自定义 Hook 顶层调用（保持一致性和避免运行时错误）
+        "useExhaustiveDependencies": "off" // 关闭Hook依赖项详尽检查（允许手动管理依赖数组，适用于特殊场景）
       },
       // 可疑代码用法的检查（可能是错误，也可能只是警告）
       "suspicious": {
-        "noExplicitAny": "warn", // 避免在 TypeScript 中使用显式 `any` 类型（降低类型安全）
-        "noConsole": "warn" // 不建议使用 console.log/console.error 等（避免生产环境遗留调试）
+        "noConsole": "off", // 关闭console语句检查（允许在代码中使用console.log等调试语句）
+        "noExplicitAny": "off", // 关闭禁止any类型检查（允许使用any类型，但应谨慎使用以避免类型安全问题）
+        "noImplicitAnyLet": "off", // 关闭隐式any的let变量检查（允许使用未明确类型的let变量）
+        "noArrayIndexKey": "off" // 关闭禁止使用数组索引作为key的检查（React列表中允许使用索引作为key，但可能导致渲染问题）
       },
       "style": {
-        "noNamespace": "error", // 禁止使用命名空间（namespace），建议用模块化方式代替
-        "useImportType": "error" // 在 TypeScript 类型导入时使用 `import type`（可优化编译与代码结构）
+        "noNamespace": "error", // 禁止使用命名空间（namespace），建议用ES6模块化方式代替（提高代码模块化程度）
+        "useImportType": "warn", // 在TypeScript类型导入时使用 `import type`（可优化编译与代码结构，减少运行时负担）
+        "noNonNullAssertion": "off" // 关闭非空断言检查（允许使用!操作符断言非空，但可能引发运行时错误）
+      },
+      "a11y": {
+        "noStaticElementInteractions": "off", // 关闭规则：禁止静态元素（如div、span）直接绑定交互事件（允许无语义元素处理交互）
+        "useKeyWithClickEvents": "off", // 关闭规则：要求onClick事件必须配合键盘事件使用（允许仅鼠标交互的场景）
+        "noLabelWithoutControl": "off", // 关闭规则：强制要求标签元素或组件具有文本标签和关联的输入（允许无标签的表单控件）
+        "noSvgWithoutTitle": "off" // 关闭规则：强制要求svg元素必须使用title元素（允许无标题的装饰性SVG）
+      },
+      "complexity": {
+        "noUselessFragments": "off", // 关闭规则：禁止不必要的片段（允许使用空标签或片段作为容器）
+        "noBannedTypes": "off", // 关闭禁止使用特定类型检查（允许使用所有TypeScript类型）
+        "useOptionalChain": "off" // 关闭强制使用可选链操作符检查（允许使用传统的安全访问方式）
+      },
+      "performance": {
+        "noDynamicNamespaceImportAccess": "off" // 关闭禁止动态命名空间导入访问检查（允许动态导入和访问模块属性）
       }
     }
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "single" // 代码中字符串的引号风格使用单引号
+      "quoteStyle": "double" // 代码中字符串的引号风格使用双引号
     }
   },
   "json": {
@@ -50,6 +77,7 @@
     "enabled": true,
     "actions": {
       "source": {
+        // 此规则生效前需在所用工具（例如 VSCode）中进行相应配置，具体可参考: https://biomejs.dev/assist/actions/organize-imports/
         "organizeImports": "on"
       }
     }

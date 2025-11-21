@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
-import { Tooltip, Button } from 'antd';
-import { EditOutlined, UnlockFilled, LockFilled, CloseOutlined } from '@ant-design/icons';
-import { SketchPicker } from 'react-color';
-import classNames from 'classnames';
-import { invertGrayscale, colorSimulation, colorToGray, colorToHex } from '@antv/smart-color';
-import { copyToClipboard } from '@/utils';
-import type { ColorValue, Color } from '@antv/color-schema';
-import type { SimulationType } from '@antv/smart-color';
+import { useState, useEffect } from "react";
+import { Draggable } from "react-beautiful-dnd";
+import type {  DraggableProvided, DraggableStateSnapshot } from "react-beautiful-dnd";
+import { Tooltip, Button } from "antd";
+import { EditOutlined, UnlockFilled, LockFilled, CloseOutlined } from "@ant-design/icons";
+import { SketchPicker } from "react-color";
+import classNames from "classnames";
+import { invertGrayscale, colorSimulation, colorToGray, colorToHex } from "@antv/smart-color";
+import { copyToClipboard } from "@/utils";
+import type { ColorValue, Color } from "@antv/color-schema";
+import type { SimulationType } from "@antv/smart-color";
 import styles from "./index.module.less";
 
-export type ColorBarSizeType = 'small' | 'large';
+export type ColorBarSizeType = "small" | "large";
 
 interface ColorBarProps {
   color: Color;
@@ -31,9 +32,9 @@ export const ColorBar: React.FC<ColorBarProps> = ({
   updateColor,
   removeColor = () => {},
   lockColor = () => {},
-  simulationType = 'normal',
+  simulationType = "normal",
   showColorPicker = false,
-  size = 'large',
+  size = "large",
 }) => {
   const [showBtns, setShowBtns] = useState<boolean>(false);
   const [showPicker, setShowPicker] = useState<boolean>(showColorPicker);
@@ -59,7 +60,11 @@ export const ColorBar: React.FC<ColorBarProps> = ({
 
   const buttons = (
     <div className={styles.btns}>
-      <Button shape="circle" icon={<EditOutlined />} onClick={() => setShowPicker(!showColorPicker)} />
+      <Button
+        shape="circle"
+        icon={<EditOutlined />}
+        onClick={() => setShowPicker(!showColorPicker)}
+      />
 
       <Button shape="circle" icon={<UnlockFilled />} onClick={lockColor} />
 
@@ -67,21 +72,21 @@ export const ColorBar: React.FC<ColorBarProps> = ({
     </div>
   );
 
-  const isLarge = size === 'large';
-  const simulated = simulationType !== 'normal';
-  const isGrayscale = simulationType === 'grayscale';
+  const isLarge = size === "large";
+  const simulated = simulationType !== "normal";
+  const isGrayscale = simulationType === "grayscale";
   const simulationResult = simulated ? colorSimulation(color, simulationType) : null;
-  let simulationResultName = '';
+  let simulationResultName = "";
   if (simulationResult) {
     if (isGrayscale) {
       const gray = colorToGray(simulationResult);
       simulationResultName = `${Math.round((gray / 255) * 100)}%`;
     } else {
-      simulationResultName = colorToHex(simulationResult).replace('#', '');
+      simulationResultName = colorToHex(simulationResult).replace("#", "");
     }
   }
 
-  const height = simulated ? '50%' : '100%';
+  const height = simulated ? "50%" : "100%";
 
   const hexColor = colorToHex(color);
   const sketchPicker = (
@@ -95,26 +100,30 @@ export const ColorBar: React.FC<ColorBarProps> = ({
         if (updateColor) {
           const { r, g, b, a = 1 } = newColor.rgb;
           updateColor({
-            model: 'rgba',
+            model: "rgba",
             value: { r, g, b, a },
           });
         }
         setEditingColor(undefined);
       }}
-      width={'260px'}
+      width={"260px"}
     />
   );
 
-  const getItemStyle = (_isDragging: any, draggableStyle: any) => ({
+  const getItemStyle = (_isDragging: boolean, draggableStyle: React.CSSProperties) => ({
     // some basic styles to make the items look a bit nicer
-    userSelect: 'none',
-    width: '100%',
+    userSelect: "none" as const,
+    width: "100%",
     ...draggableStyle,
   });
 
   const colorBarContent = (
-    <Draggable draggableId={color.id || colorToHex(color)} index={index} isDragDisabled={!!editingColor}>
-      {(provided: any, snapshot: any) => (
+    <Draggable
+      draggableId={color.id || colorToHex(color)}
+      index={index}
+      isDragDisabled={!!editingColor}
+    >
+      {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
@@ -163,7 +172,7 @@ export const ColorBar: React.FC<ColorBarProps> = ({
                 ) : (
                   <>{showBtns && buttons}</>
                 )}
-                <span className={styles.colorName}>{hexColor.replace('#', '').toUpperCase()}</span>
+                <span className={styles.colorName}>{hexColor.replace("#", "").toUpperCase()}</span>
               </div>
             </div>
             {/* simulation color bar */}
@@ -173,7 +182,7 @@ export const ColorBar: React.FC<ColorBarProps> = ({
                   [styles.colorGrayscale]: isGrayscale,
                 })}
                 style={{
-                  backgroundColor: simulationResult ? colorToHex(simulationResult) : 'initial',
+                  backgroundColor: simulationResult ? colorToHex(simulationResult) : "initial",
                   height,
                 }}
                 onClick={() => {
@@ -225,7 +234,7 @@ export const ColorBar: React.FC<ColorBarProps> = ({
       title={sketchPicker}
       placement="bottom"
       visible={showPicker}
-      color={'#ffffff'}
+      color={"#ffffff"}
       overlayClassName={styles.tooltip}
     >
       {colorBarContent}

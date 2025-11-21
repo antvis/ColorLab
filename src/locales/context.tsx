@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 import { noop } from "lodash";
 import { useBrowserLanguage } from "@/hooks/useBrowserLanguage";
 import { useLocalStorageState } from "ahooks";
@@ -16,10 +16,7 @@ const LocaleContext = createContext<LocaleContextType>({
   setLocale: noop as (value: SetState<Locale>) => void,
 });
 
-const LocaleProvider = (props: {
-  children: React.ReactNode;
-  defaultLocale: Locale;
-}) => {
+const LocaleProvider = (props: { children: React.ReactNode; defaultLocale: Locale }) => {
   const { children, defaultLocale } = props;
 
   const [locale, setLocale] = useLocalStorageState<Locale>("app-locale", {

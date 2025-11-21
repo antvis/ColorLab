@@ -1,5 +1,4 @@
-import type { FC } from "react";
-import React from "react";
+import type React from "react";
 import { Button } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { useIntl } from "react-intl";
@@ -10,10 +9,7 @@ interface OptimizationProps {
   optimize?: () => void;
 }
 
-const Optimization: FC<OptimizationProps> = ({
-  style = {},
-  optimize = () => {},
-}) => {
+const Optimization: React.FC<OptimizationProps> = ({ style = {}, optimize = () => {} }) => {
   const { formatMessage } = useIntl();
   return (
     <Button
